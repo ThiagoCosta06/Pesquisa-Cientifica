@@ -1,0 +1,3140 @@
+Running in Colab: False
+Configurando GPU...
+
+Device: cuda
+ds: AgriculturalPestsDataset
+arch: alexnet
+optim: none
+sm: True
+seed: 42
+num_workers: 0
+debug: False
+bs: 128
+lr: 1e-05
+mm: 0.9
+ss: 5
+ep: 400
+optimizer: Adam
+scheduler: plateau
+ft: True
+da: 2
+bce: True
+xai: False
+es: True
+patience: 21
+delta: 0.0001
+wandb: False
+ec: 0
+fold: 1
+magnification: 
+Dataset: AgriculturalPestsDataset
+Dataset Path: /home/pedrocosta/Dev/Datasets/AgriculturalPestsDataset/images
+Exp path: exp_AgriculturalPestsDataset/(AgriculturalPestsDataset)-alexnet-da_2-bs_128-lr_1e-05-op_Adam-sh_plateau-epochs_400
+
+>> Inicializando o modelo...
+
+Model: AlexNet
+AlexNet(
+  (features): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(11, 11), stride=(4, 4), padding=(2, 2))
+    (1): ReLU(inplace=True)
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (3): Conv2d(64, 192, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (4): ReLU(inplace=True)
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (6): Conv2d(192, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (7): ReLU(inplace=True)
+    (8): Conv2d(384, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (9): ReLU(inplace=True)
+    (10): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (11): ReLU(inplace=True)
+    (12): MaxPool2d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(6, 6))
+  (classifier): Sequential(
+    (0): Dropout(p=0.5, inplace=False)
+    (1): Linear(in_features=9216, out_features=4096, bias=True)
+    (2): ReLU(inplace=True)
+    (3): Dropout(p=0.5, inplace=False)
+    (4): Linear(in_features=4096, out_features=4096, bias=True)
+    (5): ReLU(inplace=True)
+    (6): Linear(in_features=4096, out_features=12, bias=True)
+  )
+)
+criterion = nn.CrossEntropyLoss()
+<torch.optim.lr_scheduler.ReduceLROnPlateau object at 0x7f3ea2a544f0>
+CrossEntropyLoss()
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 1e-05
+    maximize: False
+    weight_decay: 0
+)
+
+>> Training the model...
+Epoch 0/399 - TRAIN Loss: 2.3399 VAL. Loss: 1.9546 - TRAIN Acc: 0.2233 VAL. Acc: 0.4403 (21.1692 seconds)
+Epoch 1/399 - TRAIN Loss: 1.6618 VAL. Loss: 1.3754 - TRAIN Acc: 0.5148 VAL. Acc: 0.5904 (18.4148 seconds)
+Epoch 2/399 - TRAIN Loss: 1.1604 VAL. Loss: 1.0180 - TRAIN Acc: 0.6408 VAL. Acc: 0.6724 (18.0258 seconds)
+Epoch 3/399 - TRAIN Loss: 0.8774 VAL. Loss: 0.8571 - TRAIN Acc: 0.7090 VAL. Acc: 0.7327 (18.6024 seconds)
+Epoch 4/399 - TRAIN Loss: 0.7366 VAL. Loss: 0.7784 - TRAIN Acc: 0.7637 VAL. Acc: 0.7497 (18.7049 seconds)
+Epoch 5/399 - TRAIN Loss: 0.6317 VAL. Loss: 0.7304 - TRAIN Acc: 0.7949 VAL. Acc: 0.7645 (18.8879 seconds)
+Epoch 6/399 - TRAIN Loss: 0.5700 VAL. Loss: 0.7030 - TRAIN Acc: 0.8114 VAL. Acc: 0.7713 (18.4156 seconds)
+Epoch 7/399 - TRAIN Loss: 0.4981 VAL. Loss: 0.6710 - TRAIN Acc: 0.8356 VAL. Acc: 0.7838 (18.4629 seconds)
+Epoch 8/399 - TRAIN Loss: 0.4301 VAL. Loss: 0.6529 - TRAIN Acc: 0.8638 VAL. Acc: 0.7804 (18.3337 seconds)
+Epoch 9/399 - TRAIN Loss: 0.3977 VAL. Loss: 0.6381 - TRAIN Acc: 0.8712 VAL. Acc: 0.7918 (18.4625 seconds)
+Epoch 10/399 - TRAIN Loss: 0.3535 VAL. Loss: 0.6375 - TRAIN Acc: 0.8791 VAL. Acc: 0.7838 (18.5042 seconds)
+Epoch 11/399 - TRAIN Loss: 0.3209 VAL. Loss: 0.6272 - TRAIN Acc: 0.8928 VAL. Acc: 0.7986 (18.4254 seconds)
+Epoch 12/399 - TRAIN Loss: 0.2973 VAL. Loss: 0.6270 - TRAIN Acc: 0.9007 VAL. Acc: 0.7975 (18.4047 seconds)
+Epoch 13/399 - TRAIN Loss: 0.2632 VAL. Loss: 0.6182 - TRAIN Acc: 0.9138 VAL. Acc: 0.8020 (18.5374 seconds)
+Epoch 14/399 - TRAIN Loss: 0.2387 VAL. Loss: 0.6125 - TRAIN Acc: 0.9221 VAL. Acc: 0.8089 (18.5607 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 15/399 - TRAIN Loss: 0.2153 VAL. Loss: 0.6368 - TRAIN Acc: 0.9275 VAL. Acc: 0.7975 (16.3714 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 16/399 - TRAIN Loss: 0.1925 VAL. Loss: 0.6135 - TRAIN Acc: 0.9408 VAL. Acc: 0.8077 (16.3658 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 17/399 - TRAIN Loss: 0.1944 VAL. Loss: 0.6153 - TRAIN Acc: 0.9386 VAL. Acc: 0.8123 (16.2377 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 18/399 - TRAIN Loss: 0.1694 VAL. Loss: 0.6315 - TRAIN Acc: 0.9451 VAL. Acc: 0.8032 (16.4186 seconds)
+Epoch 19/399 - TRAIN Loss: 0.1590 VAL. Loss: 0.6093 - TRAIN Acc: 0.9525 VAL. Acc: 0.8168 (18.7915 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 20/399 - TRAIN Loss: 0.1374 VAL. Loss: 0.6152 - TRAIN Acc: 0.9571 VAL. Acc: 0.8111 (16.3933 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 21/399 - TRAIN Loss: 0.1293 VAL. Loss: 0.6283 - TRAIN Acc: 0.9625 VAL. Acc: 0.8146 (16.5098 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 22/399 - TRAIN Loss: 0.1117 VAL. Loss: 0.6279 - TRAIN Acc: 0.9659 VAL. Acc: 0.8146 (16.7860 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 23/399 - TRAIN Loss: 0.1028 VAL. Loss: 0.6290 - TRAIN Acc: 0.9701 VAL. Acc: 0.8180 (16.5930 seconds)
+EarlyStopping counter: 5 out of 21
+Epoch 24/399 - TRAIN Loss: 0.0897 VAL. Loss: 0.6386 - TRAIN Acc: 0.9758 VAL. Acc: 0.8180 (16.6285 seconds)
+EarlyStopping counter: 6 out of 21
+Epoch 25/399 - TRAIN Loss: 0.0857 VAL. Loss: 0.6326 - TRAIN Acc: 0.9770 VAL. Acc: 0.8225 (16.6776 seconds)
+EarlyStopping counter: 7 out of 21
+Epoch 26/399 - TRAIN Loss: 0.0821 VAL. Loss: 0.6460 - TRAIN Acc: 0.9764 VAL. Acc: 0.8180 (16.5060 seconds)
+EarlyStopping counter: 8 out of 21
+Epoch 27/399 - TRAIN Loss: 0.0750 VAL. Loss: 0.6526 - TRAIN Acc: 0.9798 VAL. Acc: 0.8180 (16.5929 seconds)
+EarlyStopping counter: 9 out of 21
+Epoch 28/399 - TRAIN Loss: 0.0720 VAL. Loss: 0.6586 - TRAIN Acc: 0.9795 VAL. Acc: 0.8203 (16.5993 seconds)
+EarlyStopping counter: 10 out of 21
+Epoch 29/399 - TRAIN Loss: 0.0603 VAL. Loss: 0.6728 - TRAIN Acc: 0.9855 VAL. Acc: 0.8191 (16.4257 seconds)
+EarlyStopping counter: 11 out of 21
+Epoch 30/399 - TRAIN Loss: 0.0564 VAL. Loss: 0.6792 - TRAIN Acc: 0.9855 VAL. Acc: 0.8134 (16.4700 seconds)
+EarlyStopping counter: 12 out of 21
+Epoch 31/399 - TRAIN Loss: 0.0560 VAL. Loss: 0.6735 - TRAIN Acc: 0.9855 VAL. Acc: 0.8191 (16.5662 seconds)
+EarlyStopping counter: 13 out of 21
+Epoch 32/399 - TRAIN Loss: 0.0599 VAL. Loss: 0.6731 - TRAIN Acc: 0.9832 VAL. Acc: 0.8168 (16.5181 seconds)
+EarlyStopping counter: 14 out of 21
+Epoch 33/399 - TRAIN Loss: 0.0509 VAL. Loss: 0.6721 - TRAIN Acc: 0.9875 VAL. Acc: 0.8191 (16.4791 seconds)
+EarlyStopping counter: 15 out of 21
+Epoch 34/399 - TRAIN Loss: 0.0553 VAL. Loss: 0.6694 - TRAIN Acc: 0.9858 VAL. Acc: 0.8191 (16.4760 seconds)
+EarlyStopping counter: 16 out of 21
+Epoch 35/399 - TRAIN Loss: 0.0537 VAL. Loss: 0.6690 - TRAIN Acc: 0.9866 VAL. Acc: 0.8191 (16.3909 seconds)
+EarlyStopping counter: 17 out of 21
+Epoch 36/399 - TRAIN Loss: 0.0488 VAL. Loss: 0.6679 - TRAIN Acc: 0.9895 VAL. Acc: 0.8237 (16.3598 seconds)
+EarlyStopping counter: 18 out of 21
+Epoch 37/399 - TRAIN Loss: 0.0522 VAL. Loss: 0.6681 - TRAIN Acc: 0.9886 VAL. Acc: 0.8214 (16.5184 seconds)
+EarlyStopping counter: 19 out of 21
+Epoch 38/399 - TRAIN Loss: 0.0558 VAL. Loss: 0.6699 - TRAIN Acc: 0.9861 VAL. Acc: 0.8214 (16.4352 seconds)
+EarlyStopping counter: 20 out of 21
+Epoch 39/399 - TRAIN Loss: 0.0544 VAL. Loss: 0.6696 - TRAIN Acc: 0.9849 VAL. Acc: 0.8203 (16.4348 seconds)
+EarlyStopping counter: 21 out of 21
+Early stopping in epoch 19!
+Treinamento finalizado. (11m 50s)
+TEST. Acc.: 0.8044
+VAL. Acc.: 0.8168
+
+>> Relatório do conjunto de experimentos...
+
+Done!
+
+
+Running in Colab: False
+Configurando GPU...
+
+Device: cuda
+ds: AgriculturalPestsDataset
+arch: resnet50
+optim: none
+sm: True
+seed: 42
+num_workers: 0
+debug: False
+bs: 16
+lr: 1e-05
+mm: 0.9
+ss: 5
+ep: 400
+optimizer: Adam
+scheduler: plateau
+ft: True
+da: 2
+bce: True
+xai: False
+es: True
+patience: 21
+delta: 0.0001
+wandb: False
+ec: 1
+fold: 1
+magnification: 
+Dataset: AgriculturalPestsDataset
+Dataset Path: /home/pedrocosta/Dev/Datasets/AgriculturalPestsDataset/images
+Exp path: exp_AgriculturalPestsDataset/(AgriculturalPestsDataset)-resnet50-da_2-bs_16-lr_1e-05-op_Adam-sh_plateau-epochs_400
+
+>> Inicializando o modelo...
+
+Model: ResNet50
+ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu): ReLU(inplace=True)
+  (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  (layer1): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer2): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (3): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer3): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (3): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (4): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (5): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer4): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(1024, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (fc): Linear(in_features=2048, out_features=12, bias=True)
+)
+criterion = nn.CrossEntropyLoss()
+<torch.optim.lr_scheduler.ReduceLROnPlateau object at 0x7f247179bb80>
+CrossEntropyLoss()
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 1e-05
+    maximize: False
+    weight_decay: 0
+)
+
+>> Training the model...
+Epoch 0/399 - TRAIN Loss: 1.6388 VAL. Loss: 0.8595 - TRAIN Acc: 0.6254 VAL. Acc: 0.8498 (76.4846 seconds)
+Epoch 1/399 - TRAIN Loss: 0.6442 VAL. Loss: 0.4054 - TRAIN Acc: 0.8788 VAL. Acc: 0.9090 (75.5546 seconds)
+Epoch 2/399 - TRAIN Loss: 0.3607 VAL. Loss: 0.3004 - TRAIN Acc: 0.9189 VAL. Acc: 0.9078 (75.7568 seconds)
+Epoch 3/399 - TRAIN Loss: 0.2449 VAL. Loss: 0.2668 - TRAIN Acc: 0.9482 VAL. Acc: 0.9170 (75.6410 seconds)
+Epoch 4/399 - TRAIN Loss: 0.1789 VAL. Loss: 0.2377 - TRAIN Acc: 0.9599 VAL. Acc: 0.9238 (75.6305 seconds)
+Epoch 5/399 - TRAIN Loss: 0.1228 VAL. Loss: 0.2241 - TRAIN Acc: 0.9798 VAL. Acc: 0.9352 (75.5955 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 6/399 - TRAIN Loss: 0.0910 VAL. Loss: 0.2466 - TRAIN Acc: 0.9861 VAL. Acc: 0.9272 (74.6933 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 7/399 - TRAIN Loss: 0.0710 VAL. Loss: 0.2397 - TRAIN Acc: 0.9886 VAL. Acc: 0.9283 (74.7073 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 8/399 - TRAIN Loss: 0.0500 VAL. Loss: 0.2391 - TRAIN Acc: 0.9946 VAL. Acc: 0.9283 (74.7459 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 9/399 - TRAIN Loss: 0.0391 VAL. Loss: 0.2395 - TRAIN Acc: 0.9952 VAL. Acc: 0.9261 (74.7531 seconds)
+EarlyStopping counter: 5 out of 21
+Epoch 10/399 - TRAIN Loss: 0.0391 VAL. Loss: 0.2370 - TRAIN Acc: 0.9943 VAL. Acc: 0.9283 (74.8689 seconds)
+EarlyStopping counter: 6 out of 21
+Epoch 11/399 - TRAIN Loss: 0.0357 VAL. Loss: 0.2379 - TRAIN Acc: 0.9954 VAL. Acc: 0.9306 (74.6183 seconds)
+EarlyStopping counter: 7 out of 21
+Epoch 12/399 - TRAIN Loss: 0.0269 VAL. Loss: 0.2373 - TRAIN Acc: 0.9972 VAL. Acc: 0.9295 (74.7677 seconds)
+EarlyStopping counter: 8 out of 21
+Epoch 13/399 - TRAIN Loss: 0.0225 VAL. Loss: 0.2494 - TRAIN Acc: 0.9977 VAL. Acc: 0.9306 (74.5703 seconds)
+EarlyStopping counter: 9 out of 21
+Epoch 14/399 - TRAIN Loss: 0.0185 VAL. Loss: 0.2352 - TRAIN Acc: 0.9974 VAL. Acc: 0.9283 (74.7202 seconds)
+EarlyStopping counter: 10 out of 21
+Epoch 15/399 - TRAIN Loss: 0.0190 VAL. Loss: 0.2477 - TRAIN Acc: 0.9983 VAL. Acc: 0.9283 (74.8151 seconds)
+EarlyStopping counter: 11 out of 21
+Epoch 16/399 - TRAIN Loss: 0.0169 VAL. Loss: 0.2573 - TRAIN Acc: 0.9974 VAL. Acc: 0.9249 (74.6748 seconds)
+EarlyStopping counter: 12 out of 21
+Epoch 17/399 - TRAIN Loss: 0.0197 VAL. Loss: 0.2452 - TRAIN Acc: 0.9966 VAL. Acc: 0.9317 (74.5723 seconds)
+EarlyStopping counter: 13 out of 21
+Epoch 18/399 - TRAIN Loss: 0.0134 VAL. Loss: 0.2619 - TRAIN Acc: 0.9994 VAL. Acc: 0.9283 (74.5467 seconds)
+EarlyStopping counter: 14 out of 21
+Epoch 19/399 - TRAIN Loss: 0.0145 VAL. Loss: 0.2504 - TRAIN Acc: 0.9977 VAL. Acc: 0.9249 (74.8091 seconds)
+EarlyStopping counter: 15 out of 21
+Epoch 20/399 - TRAIN Loss: 0.0144 VAL. Loss: 0.2424 - TRAIN Acc: 0.9974 VAL. Acc: 0.9272 (74.6583 seconds)
+EarlyStopping counter: 16 out of 21
+Epoch 21/399 - TRAIN Loss: 0.0146 VAL. Loss: 0.2699 - TRAIN Acc: 0.9983 VAL. Acc: 0.9261 (74.8790 seconds)
+EarlyStopping counter: 17 out of 21
+Epoch 22/399 - TRAIN Loss: 0.0152 VAL. Loss: 0.2489 - TRAIN Acc: 0.9980 VAL. Acc: 0.9306 (74.7556 seconds)
+EarlyStopping counter: 18 out of 21
+Epoch 23/399 - TRAIN Loss: 0.0107 VAL. Loss: 0.2614 - TRAIN Acc: 0.9994 VAL. Acc: 0.9226 (74.6308 seconds)
+EarlyStopping counter: 19 out of 21
+Epoch 24/399 - TRAIN Loss: 0.0122 VAL. Loss: 0.2465 - TRAIN Acc: 0.9983 VAL. Acc: 0.9306 (74.6837 seconds)
+EarlyStopping counter: 20 out of 21
+Epoch 25/399 - TRAIN Loss: 0.0127 VAL. Loss: 0.2523 - TRAIN Acc: 0.9986 VAL. Acc: 0.9238 (74.8259 seconds)
+EarlyStopping counter: 21 out of 21
+Early stopping in epoch 5!
+Treinamento finalizado. (33m 43s)
+TEST. Acc.: 0.9308
+VAL. Acc.: 0.9352
+
+>> Relatório do conjunto de experimentos...
+
+Done!
+
+
+Running in Colab: False
+Configurando GPU...
+
+Device: cuda
+ds: AgriculturalPestsDataset
+arch: vit
+optim: none
+sm: True
+seed: 42
+num_workers: 0
+debug: False
+bs: 32
+lr: 1e-05
+mm: 0.9
+ss: 5
+ep: 400
+optimizer: Adam
+scheduler: plateau
+ft: True
+da: 2
+bce: True
+xai: False
+es: True
+patience: 21
+delta: 0.0001
+wandb: False
+ec: 2
+fold: 1
+magnification: 
+Dataset: AgriculturalPestsDataset
+Dataset Path: /home/pedrocosta/Dev/Datasets/AgriculturalPestsDataset/images
+Exp path: exp_AgriculturalPestsDataset/(AgriculturalPestsDataset)-vit-da_2-bs_32-lr_1e-05-op_Adam-sh_plateau-epochs_400
+
+>> Inicializando o modelo...
+
+Model: ViT_B_16
+VisionTransformer(
+  (conv_proj): Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))
+  (encoder): Encoder(
+    (dropout): Dropout(p=0.0, inplace=False)
+    (layers): Sequential(
+      (encoder_layer_0): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_1): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_2): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_3): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_4): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_5): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_6): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_7): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_8): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_9): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_10): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_11): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+    )
+    (ln): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+  )
+  (heads): Sequential(
+    (head): Linear(in_features=768, out_features=12, bias=True)
+  )
+)
+criterion = nn.CrossEntropyLoss()
+<torch.optim.lr_scheduler.ReduceLROnPlateau object at 0x7fac5c5e8f70>
+CrossEntropyLoss()
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 1e-05
+    maximize: False
+    weight_decay: 0
+)
+
+>> Training the model...
+Epoch 0/399 - TRAIN Loss: 1.2633 VAL. Loss: 0.4358 - TRAIN Acc: 0.6914 VAL. Acc: 0.9272 (91.4007 seconds)
+Epoch 1/399 - TRAIN Loss: 0.2745 VAL. Loss: 0.2690 - TRAIN Acc: 0.9451 VAL. Acc: 0.9397 (91.5985 seconds)
+Epoch 2/399 - TRAIN Loss: 0.1323 VAL. Loss: 0.1957 - TRAIN Acc: 0.9761 VAL. Acc: 0.9477 (91.5472 seconds)
+Epoch 3/399 - TRAIN Loss: 0.0751 VAL. Loss: 0.1849 - TRAIN Acc: 0.9892 VAL. Acc: 0.9499 (91.4487 seconds)
+Epoch 4/399 - TRAIN Loss: 0.0413 VAL. Loss: 0.1731 - TRAIN Acc: 0.9952 VAL. Acc: 0.9534 (91.3795 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 5/399 - TRAIN Loss: 0.0265 VAL. Loss: 0.1766 - TRAIN Acc: 0.9977 VAL. Acc: 0.9511 (88.2704 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 6/399 - TRAIN Loss: 0.0180 VAL. Loss: 0.1984 - TRAIN Acc: 0.9991 VAL. Acc: 0.9420 (87.9349 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 7/399 - TRAIN Loss: 0.0134 VAL. Loss: 0.1839 - TRAIN Acc: 0.9991 VAL. Acc: 0.9511 (88.1154 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 8/399 - TRAIN Loss: 0.0113 VAL. Loss: 0.1964 - TRAIN Acc: 0.9991 VAL. Acc: 0.9499 (88.1798 seconds)
+EarlyStopping counter: 5 out of 21
+Epoch 9/399 - TRAIN Loss: 0.0135 VAL. Loss: 0.1773 - TRAIN Acc: 0.9983 VAL. Acc: 0.9534 (88.1327 seconds)
+EarlyStopping counter: 6 out of 21
+Epoch 10/399 - TRAIN Loss: 0.0089 VAL. Loss: 0.2135 - TRAIN Acc: 0.9991 VAL. Acc: 0.9488 (88.2031 seconds)
+EarlyStopping counter: 7 out of 21
+Epoch 11/399 - TRAIN Loss: 0.0130 VAL. Loss: 0.1759 - TRAIN Acc: 0.9974 VAL. Acc: 0.9545 (88.1468 seconds)
+EarlyStopping counter: 8 out of 21
+Epoch 12/399 - TRAIN Loss: 0.0074 VAL. Loss: 0.1815 - TRAIN Acc: 0.9994 VAL. Acc: 0.9499 (88.3158 seconds)
+EarlyStopping counter: 9 out of 21
+Epoch 13/399 - TRAIN Loss: 0.0052 VAL. Loss: 0.2118 - TRAIN Acc: 0.9994 VAL. Acc: 0.9374 (88.0636 seconds)
+EarlyStopping counter: 10 out of 21
+Epoch 14/399 - TRAIN Loss: 0.0285 VAL. Loss: 0.1868 - TRAIN Acc: 0.9926 VAL. Acc: 0.9545 (88.5005 seconds)
+EarlyStopping counter: 11 out of 21
+Epoch 15/399 - TRAIN Loss: 0.0060 VAL. Loss: 0.1768 - TRAIN Acc: 0.9997 VAL. Acc: 0.9590 (88.2297 seconds)
+Epoch 16/399 - TRAIN Loss: 0.0045 VAL. Loss: 0.1713 - TRAIN Acc: 0.9997 VAL. Acc: 0.9602 (91.4112 seconds)
+Epoch 17/399 - TRAIN Loss: 0.0032 VAL. Loss: 0.1700 - TRAIN Acc: 1.0000 VAL. Acc: 0.9613 (91.3463 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 18/399 - TRAIN Loss: 0.0032 VAL. Loss: 0.1700 - TRAIN Acc: 1.0000 VAL. Acc: 0.9613 (88.1554 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 19/399 - TRAIN Loss: 0.0029 VAL. Loss: 0.1707 - TRAIN Acc: 1.0000 VAL. Acc: 0.9613 (88.0124 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 20/399 - TRAIN Loss: 0.0034 VAL. Loss: 0.1731 - TRAIN Acc: 0.9997 VAL. Acc: 0.9613 (88.0659 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 21/399 - TRAIN Loss: 0.0035 VAL. Loss: 0.1764 - TRAIN Acc: 0.9997 VAL. Acc: 0.9590 (88.1358 seconds)
+EarlyStopping counter: 5 out of 21
+Epoch 22/399 - TRAIN Loss: 0.0029 VAL. Loss: 0.1744 - TRAIN Acc: 1.0000 VAL. Acc: 0.9579 (88.2475 seconds)
+EarlyStopping counter: 6 out of 21
+Epoch 23/399 - TRAIN Loss: 0.0027 VAL. Loss: 0.1756 - TRAIN Acc: 1.0000 VAL. Acc: 0.9568 (88.1417 seconds)
+EarlyStopping counter: 7 out of 21
+Epoch 24/399 - TRAIN Loss: 0.0026 VAL. Loss: 0.1739 - TRAIN Acc: 1.0000 VAL. Acc: 0.9579 (88.1726 seconds)
+EarlyStopping counter: 8 out of 21
+Epoch 25/399 - TRAIN Loss: 0.0027 VAL. Loss: 0.1754 - TRAIN Acc: 0.9997 VAL. Acc: 0.9568 (88.2437 seconds)
+EarlyStopping counter: 9 out of 21
+Epoch 26/399 - TRAIN Loss: 0.0026 VAL. Loss: 0.1749 - TRAIN Acc: 1.0000 VAL. Acc: 0.9579 (88.2313 seconds)
+EarlyStopping counter: 10 out of 21
+Epoch 27/399 - TRAIN Loss: 0.0024 VAL. Loss: 0.1761 - TRAIN Acc: 1.0000 VAL. Acc: 0.9579 (88.3371 seconds)
+EarlyStopping counter: 11 out of 21
+Epoch 28/399 - TRAIN Loss: 0.0024 VAL. Loss: 0.1751 - TRAIN Acc: 1.0000 VAL. Acc: 0.9579 (88.3045 seconds)
+EarlyStopping counter: 12 out of 21
+Epoch 29/399 - TRAIN Loss: 0.0023 VAL. Loss: 0.1750 - TRAIN Acc: 1.0000 VAL. Acc: 0.9579 (88.2546 seconds)
+EarlyStopping counter: 13 out of 21
+Epoch 30/399 - TRAIN Loss: 0.0023 VAL. Loss: 0.1749 - TRAIN Acc: 1.0000 VAL. Acc: 0.9579 (88.2014 seconds)
+EarlyStopping counter: 14 out of 21
+Epoch 31/399 - TRAIN Loss: 0.0024 VAL. Loss: 0.1750 - TRAIN Acc: 1.0000 VAL. Acc: 0.9579 (88.1534 seconds)
+EarlyStopping counter: 15 out of 21
+Epoch 32/399 - TRAIN Loss: 0.0023 VAL. Loss: 0.1749 - TRAIN Acc: 1.0000 VAL. Acc: 0.9579 (88.2440 seconds)
+EarlyStopping counter: 16 out of 21
+Epoch 33/399 - TRAIN Loss: 0.0022 VAL. Loss: 0.1747 - TRAIN Acc: 1.0000 VAL. Acc: 0.9579 (87.9652 seconds)
+EarlyStopping counter: 17 out of 21
+Epoch 34/399 - TRAIN Loss: 0.0024 VAL. Loss: 0.1752 - TRAIN Acc: 1.0000 VAL. Acc: 0.9579 (88.1582 seconds)
+EarlyStopping counter: 18 out of 21
+Epoch 35/399 - TRAIN Loss: 0.0024 VAL. Loss: 0.1752 - TRAIN Acc: 1.0000 VAL. Acc: 0.9579 (87.9629 seconds)
+EarlyStopping counter: 19 out of 21
+Epoch 36/399 - TRAIN Loss: 0.0025 VAL. Loss: 0.1757 - TRAIN Acc: 1.0000 VAL. Acc: 0.9568 (88.0531 seconds)
+EarlyStopping counter: 20 out of 21
+Epoch 37/399 - TRAIN Loss: 0.0025 VAL. Loss: 0.1763 - TRAIN Acc: 1.0000 VAL. Acc: 0.9568 (87.9855 seconds)
+EarlyStopping counter: 21 out of 21
+Early stopping in epoch 17!
+Treinamento finalizado. (57m 41s)
+TEST. Acc.: 0.9572
+VAL. Acc.: 0.9613
+
+>> Relatório do conjunto de experimentos...
+
+Done!
+
+
+Running in Colab: False
+Configurando GPU...
+
+Device: cuda
+ds: AgriculturalPestsDataset
+arch: alexnet
+optim: none
+sm: True
+seed: 42
+num_workers: 0
+debug: False
+bs: 128
+lr: 1e-05
+mm: 0.9
+ss: 5
+ep: 400
+optimizer: Adam
+scheduler: plateau
+ft: True
+da: 3
+bce: True
+xai: False
+es: True
+patience: 21
+delta: 0.0001
+wandb: False
+ec: 3
+fold: 1
+magnification: 
+Dataset: AgriculturalPestsDataset
+Dataset Path: /home/pedrocosta/Dev/Datasets/AgriculturalPestsDataset/images
+Exp path: exp_AgriculturalPestsDataset/(AgriculturalPestsDataset)-alexnet-da_3-bs_128-lr_1e-05-op_Adam-sh_plateau-epochs_400
+
+>> Inicializando o modelo...
+
+Model: AlexNet
+AlexNet(
+  (features): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(11, 11), stride=(4, 4), padding=(2, 2))
+    (1): ReLU(inplace=True)
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (3): Conv2d(64, 192, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (4): ReLU(inplace=True)
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (6): Conv2d(192, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (7): ReLU(inplace=True)
+    (8): Conv2d(384, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (9): ReLU(inplace=True)
+    (10): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (11): ReLU(inplace=True)
+    (12): MaxPool2d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(6, 6))
+  (classifier): Sequential(
+    (0): Dropout(p=0.5, inplace=False)
+    (1): Linear(in_features=9216, out_features=4096, bias=True)
+    (2): ReLU(inplace=True)
+    (3): Dropout(p=0.5, inplace=False)
+    (4): Linear(in_features=4096, out_features=4096, bias=True)
+    (5): ReLU(inplace=True)
+    (6): Linear(in_features=4096, out_features=12, bias=True)
+  )
+)
+criterion = nn.CrossEntropyLoss()
+<torch.optim.lr_scheduler.ReduceLROnPlateau object at 0x7f272ec6c3a0>
+CrossEntropyLoss()
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 1e-05
+    maximize: False
+    weight_decay: 0
+)
+
+>> Training the model...
+Epoch 0/399 - TRAIN Loss: 2.4245 VAL. Loss: 2.0677 - TRAIN Acc: 0.1590 VAL. Acc: 0.3663 (39.7572 seconds)
+Epoch 1/399 - TRAIN Loss: 2.0060 VAL. Loss: 1.5924 - TRAIN Acc: 0.3555 VAL. Acc: 0.5154 (39.3930 seconds)
+Epoch 2/399 - TRAIN Loss: 1.6017 VAL. Loss: 1.2031 - TRAIN Acc: 0.4835 VAL. Acc: 0.6303 (39.5296 seconds)
+Epoch 3/399 - TRAIN Loss: 1.3281 VAL. Loss: 1.0134 - TRAIN Acc: 0.5731 VAL. Acc: 0.6610 (39.7030 seconds)
+Epoch 4/399 - TRAIN Loss: 1.1714 VAL. Loss: 0.8975 - TRAIN Acc: 0.6129 VAL. Acc: 0.7110 (39.6919 seconds)
+Epoch 5/399 - TRAIN Loss: 1.1062 VAL. Loss: 0.8361 - TRAIN Acc: 0.6331 VAL. Acc: 0.7338 (39.2911 seconds)
+Epoch 6/399 - TRAIN Loss: 1.0393 VAL. Loss: 0.7920 - TRAIN Acc: 0.6561 VAL. Acc: 0.7509 (39.4393 seconds)
+Epoch 7/399 - TRAIN Loss: 0.9979 VAL. Loss: 0.7703 - TRAIN Acc: 0.6687 VAL. Acc: 0.7577 (39.3398 seconds)
+Epoch 8/399 - TRAIN Loss: 0.9370 VAL. Loss: 0.7376 - TRAIN Acc: 0.6883 VAL. Acc: 0.7668 (39.3799 seconds)
+Epoch 9/399 - TRAIN Loss: 0.9205 VAL. Loss: 0.7028 - TRAIN Acc: 0.6937 VAL. Acc: 0.7759 (39.2756 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 10/399 - TRAIN Loss: 0.8831 VAL. Loss: 0.7057 - TRAIN Acc: 0.7025 VAL. Acc: 0.7804 (37.1904 seconds)
+Epoch 11/399 - TRAIN Loss: 0.8295 VAL. Loss: 0.6788 - TRAIN Acc: 0.7278 VAL. Acc: 0.7747 (39.3929 seconds)
+Epoch 12/399 - TRAIN Loss: 0.8182 VAL. Loss: 0.6787 - TRAIN Acc: 0.7366 VAL. Acc: 0.7747 (39.4411 seconds)
+Epoch 13/399 - TRAIN Loss: 0.8026 VAL. Loss: 0.6401 - TRAIN Acc: 0.7292 VAL. Acc: 0.7907 (39.4443 seconds)
+Epoch 14/399 - TRAIN Loss: 0.7754 VAL. Loss: 0.6396 - TRAIN Acc: 0.7361 VAL. Acc: 0.7884 (39.6253 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 15/399 - TRAIN Loss: 0.7271 VAL. Loss: 0.6431 - TRAIN Acc: 0.7469 VAL. Acc: 0.7918 (37.2050 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 16/399 - TRAIN Loss: 0.7484 VAL. Loss: 0.6420 - TRAIN Acc: 0.7557 VAL. Acc: 0.7907 (37.2373 seconds)
+Epoch 17/399 - TRAIN Loss: 0.7070 VAL. Loss: 0.6184 - TRAIN Acc: 0.7506 VAL. Acc: 0.7964 (39.5582 seconds)
+Epoch 18/399 - TRAIN Loss: 0.6920 VAL. Loss: 0.5953 - TRAIN Acc: 0.7705 VAL. Acc: 0.8146 (39.5570 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 19/399 - TRAIN Loss: 0.6819 VAL. Loss: 0.6061 - TRAIN Acc: 0.7767 VAL. Acc: 0.8055 (37.2823 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 20/399 - TRAIN Loss: 0.6737 VAL. Loss: 0.5962 - TRAIN Acc: 0.7702 VAL. Acc: 0.8077 (37.3242 seconds)
+Epoch 21/399 - TRAIN Loss: 0.6477 VAL. Loss: 0.5893 - TRAIN Acc: 0.7821 VAL. Acc: 0.8032 (39.5269 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 22/399 - TRAIN Loss: 0.6296 VAL. Loss: 0.5987 - TRAIN Acc: 0.7841 VAL. Acc: 0.8111 (37.2844 seconds)
+Epoch 23/399 - TRAIN Loss: 0.6257 VAL. Loss: 0.5892 - TRAIN Acc: 0.7932 VAL. Acc: 0.8066 (39.4472 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 24/399 - TRAIN Loss: 0.6103 VAL. Loss: 0.5946 - TRAIN Acc: 0.7938 VAL. Acc: 0.8100 (37.1947 seconds)
+Epoch 25/399 - TRAIN Loss: 0.5739 VAL. Loss: 0.5880 - TRAIN Acc: 0.8131 VAL. Acc: 0.8077 (39.4889 seconds)
+Epoch 26/399 - TRAIN Loss: 0.5907 VAL. Loss: 0.5744 - TRAIN Acc: 0.7978 VAL. Acc: 0.7998 (39.5906 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 27/399 - TRAIN Loss: 0.5761 VAL. Loss: 0.5876 - TRAIN Acc: 0.8072 VAL. Acc: 0.8032 (37.3186 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 28/399 - TRAIN Loss: 0.5501 VAL. Loss: 0.5855 - TRAIN Acc: 0.8129 VAL. Acc: 0.8020 (37.2375 seconds)
+Epoch 29/399 - TRAIN Loss: 0.5546 VAL. Loss: 0.5736 - TRAIN Acc: 0.8163 VAL. Acc: 0.8089 (39.5381 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 30/399 - TRAIN Loss: 0.5225 VAL. Loss: 0.5835 - TRAIN Acc: 0.8231 VAL. Acc: 0.8077 (37.2801 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 31/399 - TRAIN Loss: 0.5312 VAL. Loss: 0.5766 - TRAIN Acc: 0.8151 VAL. Acc: 0.8089 (37.2774 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 32/399 - TRAIN Loss: 0.5099 VAL. Loss: 0.5779 - TRAIN Acc: 0.8296 VAL. Acc: 0.8100 (37.1859 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 33/399 - TRAIN Loss: 0.5071 VAL. Loss: 0.5770 - TRAIN Acc: 0.8271 VAL. Acc: 0.8214 (37.1553 seconds)
+Epoch 34/399 - TRAIN Loss: 0.5136 VAL. Loss: 0.5632 - TRAIN Acc: 0.8305 VAL. Acc: 0.8203 (39.4079 seconds)
+Epoch 35/399 - TRAIN Loss: 0.4913 VAL. Loss: 0.5609 - TRAIN Acc: 0.8404 VAL. Acc: 0.8191 (39.4878 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 36/399 - TRAIN Loss: 0.4807 VAL. Loss: 0.5613 - TRAIN Acc: 0.8407 VAL. Acc: 0.8225 (37.3239 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 37/399 - TRAIN Loss: 0.4642 VAL. Loss: 0.5706 - TRAIN Acc: 0.8430 VAL. Acc: 0.8191 (37.2700 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 38/399 - TRAIN Loss: 0.4648 VAL. Loss: 0.5663 - TRAIN Acc: 0.8359 VAL. Acc: 0.8180 (37.2656 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 39/399 - TRAIN Loss: 0.4627 VAL. Loss: 0.5691 - TRAIN Acc: 0.8402 VAL. Acc: 0.8259 (37.3834 seconds)
+EarlyStopping counter: 5 out of 21
+Epoch 40/399 - TRAIN Loss: 0.4356 VAL. Loss: 0.5705 - TRAIN Acc: 0.8527 VAL. Acc: 0.8225 (37.2916 seconds)
+EarlyStopping counter: 6 out of 21
+Epoch 41/399 - TRAIN Loss: 0.4385 VAL. Loss: 0.5786 - TRAIN Acc: 0.8476 VAL. Acc: 0.8225 (37.2793 seconds)
+EarlyStopping counter: 7 out of 21
+Epoch 42/399 - TRAIN Loss: 0.4084 VAL. Loss: 0.5670 - TRAIN Acc: 0.8609 VAL. Acc: 0.8180 (37.1374 seconds)
+EarlyStopping counter: 8 out of 21
+Epoch 43/399 - TRAIN Loss: 0.4163 VAL. Loss: 0.5634 - TRAIN Acc: 0.8575 VAL. Acc: 0.8248 (37.4023 seconds)
+EarlyStopping counter: 9 out of 21
+Epoch 44/399 - TRAIN Loss: 0.4144 VAL. Loss: 0.5618 - TRAIN Acc: 0.8572 VAL. Acc: 0.8214 (37.3942 seconds)
+EarlyStopping counter: 10 out of 21
+Epoch 45/399 - TRAIN Loss: 0.4086 VAL. Loss: 0.5761 - TRAIN Acc: 0.8581 VAL. Acc: 0.8225 (37.3191 seconds)
+EarlyStopping counter: 11 out of 21
+Epoch 46/399 - TRAIN Loss: 0.4101 VAL. Loss: 0.5811 - TRAIN Acc: 0.8561 VAL. Acc: 0.8168 (37.1575 seconds)
+EarlyStopping counter: 12 out of 21
+Epoch 47/399 - TRAIN Loss: 0.3959 VAL. Loss: 0.5755 - TRAIN Acc: 0.8683 VAL. Acc: 0.8180 (37.1585 seconds)
+EarlyStopping counter: 13 out of 21
+Epoch 48/399 - TRAIN Loss: 0.3986 VAL. Loss: 0.5692 - TRAIN Acc: 0.8697 VAL. Acc: 0.8180 (37.0536 seconds)
+EarlyStopping counter: 14 out of 21
+Epoch 49/399 - TRAIN Loss: 0.3839 VAL. Loss: 0.5717 - TRAIN Acc: 0.8649 VAL. Acc: 0.8180 (37.2093 seconds)
+EarlyStopping counter: 15 out of 21
+Epoch 50/399 - TRAIN Loss: 0.3908 VAL. Loss: 0.5678 - TRAIN Acc: 0.8666 VAL. Acc: 0.8191 (37.2855 seconds)
+EarlyStopping counter: 16 out of 21
+Epoch 51/399 - TRAIN Loss: 0.3918 VAL. Loss: 0.5672 - TRAIN Acc: 0.8641 VAL. Acc: 0.8203 (37.3316 seconds)
+EarlyStopping counter: 17 out of 21
+Epoch 52/399 - TRAIN Loss: 0.3757 VAL. Loss: 0.5697 - TRAIN Acc: 0.8726 VAL. Acc: 0.8214 (37.2835 seconds)
+EarlyStopping counter: 18 out of 21
+Epoch 53/399 - TRAIN Loss: 0.3742 VAL. Loss: 0.5710 - TRAIN Acc: 0.8692 VAL. Acc: 0.8191 (37.3458 seconds)
+EarlyStopping counter: 19 out of 21
+Epoch 54/399 - TRAIN Loss: 0.3884 VAL. Loss: 0.5688 - TRAIN Acc: 0.8712 VAL. Acc: 0.8214 (37.1717 seconds)
+EarlyStopping counter: 20 out of 21
+Epoch 55/399 - TRAIN Loss: 0.3941 VAL. Loss: 0.5674 - TRAIN Acc: 0.8677 VAL. Acc: 0.8214 (37.0883 seconds)
+EarlyStopping counter: 21 out of 21
+Early stopping in epoch 35!
+Treinamento finalizado. (36m 14s)
+TEST. Acc.: 0.8098
+VAL. Acc.: 0.8191
+
+>> Relatório do conjunto de experimentos...
+
+Done!
+
+
+Running in Colab: False
+Configurando GPU...
+
+Device: cuda
+ds: AgriculturalPestsDataset
+arch: resnet50
+optim: none
+sm: True
+seed: 42
+num_workers: 0
+debug: False
+bs: 16
+lr: 1e-05
+mm: 0.9
+ss: 5
+ep: 400
+optimizer: Adam
+scheduler: plateau
+ft: True
+da: 3
+bce: True
+xai: False
+es: True
+patience: 21
+delta: 0.0001
+wandb: False
+ec: 4
+fold: 1
+magnification: 
+Dataset: AgriculturalPestsDataset
+Dataset Path: /home/pedrocosta/Dev/Datasets/AgriculturalPestsDataset/images
+Exp path: exp_AgriculturalPestsDataset/(AgriculturalPestsDataset)-resnet50-da_3-bs_16-lr_1e-05-op_Adam-sh_plateau-epochs_400
+
+>> Inicializando o modelo...
+
+Model: ResNet50
+ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu): ReLU(inplace=True)
+  (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  (layer1): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer2): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (3): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer3): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (3): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (4): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (5): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer4): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(1024, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (fc): Linear(in_features=2048, out_features=12, bias=True)
+)
+criterion = nn.CrossEntropyLoss()
+<torch.optim.lr_scheduler.ReduceLROnPlateau object at 0x7f4993e67d00>
+CrossEntropyLoss()
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 1e-05
+    maximize: False
+    weight_decay: 0
+)
+
+>> Training the model...
+Epoch 0/399 - TRAIN Loss: 1.8595 VAL. Loss: 0.8908 - TRAIN Acc: 0.5213 VAL. Acc: 0.8123 (96.3085 seconds)
+Epoch 1/399 - TRAIN Loss: 0.9149 VAL. Loss: 0.4638 - TRAIN Acc: 0.7921 VAL. Acc: 0.8828 (96.0927 seconds)
+Epoch 2/399 - TRAIN Loss: 0.6205 VAL. Loss: 0.3772 - TRAIN Acc: 0.8387 VAL. Acc: 0.8931 (96.0724 seconds)
+Epoch 3/399 - TRAIN Loss: 0.5027 VAL. Loss: 0.3155 - TRAIN Acc: 0.8609 VAL. Acc: 0.9181 (96.1364 seconds)
+Epoch 4/399 - TRAIN Loss: 0.4311 VAL. Loss: 0.2824 - TRAIN Acc: 0.8771 VAL. Acc: 0.9181 (96.0601 seconds)
+Epoch 5/399 - TRAIN Loss: 0.3766 VAL. Loss: 0.2707 - TRAIN Acc: 0.8970 VAL. Acc: 0.9204 (96.0750 seconds)
+Epoch 6/399 - TRAIN Loss: 0.3333 VAL. Loss: 0.2669 - TRAIN Acc: 0.9061 VAL. Acc: 0.9238 (96.0730 seconds)
+Epoch 7/399 - TRAIN Loss: 0.3001 VAL. Loss: 0.2568 - TRAIN Acc: 0.9170 VAL. Acc: 0.9238 (96.1120 seconds)
+Epoch 8/399 - TRAIN Loss: 0.2715 VAL. Loss: 0.2510 - TRAIN Acc: 0.9289 VAL. Acc: 0.9249 (96.1580 seconds)
+Epoch 9/399 - TRAIN Loss: 0.2518 VAL. Loss: 0.2478 - TRAIN Acc: 0.9292 VAL. Acc: 0.9238 (96.0203 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 10/399 - TRAIN Loss: 0.2443 VAL. Loss: 0.2479 - TRAIN Acc: 0.9278 VAL. Acc: 0.9306 (95.2562 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 11/399 - TRAIN Loss: 0.2076 VAL. Loss: 0.2483 - TRAIN Acc: 0.9383 VAL. Acc: 0.9272 (95.2034 seconds)
+Epoch 12/399 - TRAIN Loss: 0.1809 VAL. Loss: 0.2424 - TRAIN Acc: 0.9528 VAL. Acc: 0.9352 (96.2456 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 13/399 - TRAIN Loss: 0.1957 VAL. Loss: 0.2545 - TRAIN Acc: 0.9417 VAL. Acc: 0.9272 (95.1694 seconds)
+Epoch 14/399 - TRAIN Loss: 0.1957 VAL. Loss: 0.2337 - TRAIN Acc: 0.9440 VAL. Acc: 0.9283 (96.2043 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 15/399 - TRAIN Loss: 0.1636 VAL. Loss: 0.2530 - TRAIN Acc: 0.9573 VAL. Acc: 0.9283 (95.0409 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 16/399 - TRAIN Loss: 0.1443 VAL. Loss: 0.2391 - TRAIN Acc: 0.9605 VAL. Acc: 0.9306 (95.1393 seconds)
+Epoch 17/399 - TRAIN Loss: 0.1461 VAL. Loss: 0.2286 - TRAIN Acc: 0.9613 VAL. Acc: 0.9295 (96.1022 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 18/399 - TRAIN Loss: 0.1527 VAL. Loss: 0.2313 - TRAIN Acc: 0.9553 VAL. Acc: 0.9204 (95.1828 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 19/399 - TRAIN Loss: 0.1355 VAL. Loss: 0.2522 - TRAIN Acc: 0.9664 VAL. Acc: 0.9261 (95.1879 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 20/399 - TRAIN Loss: 0.1283 VAL. Loss: 0.2459 - TRAIN Acc: 0.9659 VAL. Acc: 0.9261 (95.1747 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 21/399 - TRAIN Loss: 0.1254 VAL. Loss: 0.2547 - TRAIN Acc: 0.9647 VAL. Acc: 0.9238 (95.1834 seconds)
+EarlyStopping counter: 5 out of 21
+Epoch 22/399 - TRAIN Loss: 0.1246 VAL. Loss: 0.2315 - TRAIN Acc: 0.9633 VAL. Acc: 0.9283 (95.1897 seconds)
+Epoch 23/399 - TRAIN Loss: 0.1250 VAL. Loss: 0.2201 - TRAIN Acc: 0.9622 VAL. Acc: 0.9374 (96.1020 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 24/399 - TRAIN Loss: 0.1179 VAL. Loss: 0.2297 - TRAIN Acc: 0.9667 VAL. Acc: 0.9306 (95.0998 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 25/399 - TRAIN Loss: 0.1082 VAL. Loss: 0.2468 - TRAIN Acc: 0.9701 VAL. Acc: 0.9295 (95.2357 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 26/399 - TRAIN Loss: 0.1086 VAL. Loss: 0.2547 - TRAIN Acc: 0.9679 VAL. Acc: 0.9306 (95.2108 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 27/399 - TRAIN Loss: 0.0947 VAL. Loss: 0.2378 - TRAIN Acc: 0.9721 VAL. Acc: 0.9363 (95.1471 seconds)
+EarlyStopping counter: 5 out of 21
+Epoch 28/399 - TRAIN Loss: 0.1004 VAL. Loss: 0.2477 - TRAIN Acc: 0.9716 VAL. Acc: 0.9329 (95.0725 seconds)
+EarlyStopping counter: 6 out of 21
+Epoch 29/399 - TRAIN Loss: 0.1028 VAL. Loss: 0.2764 - TRAIN Acc: 0.9699 VAL. Acc: 0.9272 (95.1281 seconds)
+EarlyStopping counter: 7 out of 21
+Epoch 30/399 - TRAIN Loss: 0.1064 VAL. Loss: 0.2574 - TRAIN Acc: 0.9699 VAL. Acc: 0.9295 (95.0755 seconds)
+EarlyStopping counter: 8 out of 21
+Epoch 31/399 - TRAIN Loss: 0.1073 VAL. Loss: 0.2543 - TRAIN Acc: 0.9701 VAL. Acc: 0.9306 (95.0560 seconds)
+EarlyStopping counter: 9 out of 21
+Epoch 32/399 - TRAIN Loss: 0.0842 VAL. Loss: 0.2466 - TRAIN Acc: 0.9758 VAL. Acc: 0.9295 (94.8918 seconds)
+EarlyStopping counter: 10 out of 21
+Epoch 33/399 - TRAIN Loss: 0.0948 VAL. Loss: 0.2312 - TRAIN Acc: 0.9738 VAL. Acc: 0.9340 (94.9856 seconds)
+EarlyStopping counter: 11 out of 21
+Epoch 34/399 - TRAIN Loss: 0.0775 VAL. Loss: 0.2264 - TRAIN Acc: 0.9812 VAL. Acc: 0.9363 (94.9211 seconds)
+EarlyStopping counter: 12 out of 21
+Epoch 35/399 - TRAIN Loss: 0.0685 VAL. Loss: 0.2254 - TRAIN Acc: 0.9795 VAL. Acc: 0.9363 (94.9465 seconds)
+EarlyStopping counter: 13 out of 21
+Epoch 36/399 - TRAIN Loss: 0.0712 VAL. Loss: 0.2372 - TRAIN Acc: 0.9801 VAL. Acc: 0.9352 (95.0690 seconds)
+EarlyStopping counter: 14 out of 21
+Epoch 37/399 - TRAIN Loss: 0.0812 VAL. Loss: 0.2379 - TRAIN Acc: 0.9778 VAL. Acc: 0.9295 (95.1583 seconds)
+EarlyStopping counter: 15 out of 21
+Epoch 38/399 - TRAIN Loss: 0.0692 VAL. Loss: 0.2458 - TRAIN Acc: 0.9807 VAL. Acc: 0.9317 (95.0347 seconds)
+EarlyStopping counter: 16 out of 21
+Epoch 39/399 - TRAIN Loss: 0.0724 VAL. Loss: 0.2330 - TRAIN Acc: 0.9804 VAL. Acc: 0.9329 (95.0618 seconds)
+EarlyStopping counter: 17 out of 21
+Epoch 40/399 - TRAIN Loss: 0.0695 VAL. Loss: 0.2295 - TRAIN Acc: 0.9804 VAL. Acc: 0.9340 (94.9993 seconds)
+EarlyStopping counter: 18 out of 21
+Epoch 41/399 - TRAIN Loss: 0.0682 VAL. Loss: 0.2339 - TRAIN Acc: 0.9812 VAL. Acc: 0.9340 (94.9913 seconds)
+EarlyStopping counter: 19 out of 21
+Epoch 42/399 - TRAIN Loss: 0.0697 VAL. Loss: 0.2304 - TRAIN Acc: 0.9807 VAL. Acc: 0.9352 (95.2259 seconds)
+EarlyStopping counter: 20 out of 21
+Epoch 43/399 - TRAIN Loss: 0.0719 VAL. Loss: 0.2334 - TRAIN Acc: 0.9804 VAL. Acc: 0.9317 (95.0982 seconds)
+EarlyStopping counter: 21 out of 21
+Early stopping in epoch 23!
+Treinamento finalizado. (71m 34s)
+TEST. Acc.: 0.9263
+VAL. Acc.: 0.9374
+
+>> Relatório do conjunto de experimentos...
+
+Done!
+
+
+Running in Colab: False
+Configurando GPU...
+
+Device: cuda
+ds: AgriculturalPestsDataset
+arch: vit
+optim: none
+sm: True
+seed: 42
+num_workers: 0
+debug: False
+bs: 32
+lr: 1e-05
+mm: 0.9
+ss: 5
+ep: 400
+optimizer: Adam
+scheduler: plateau
+ft: True
+da: 3
+bce: True
+xai: False
+es: True
+patience: 21
+delta: 0.0001
+wandb: False
+ec: 5
+fold: 1
+magnification: 
+Dataset: AgriculturalPestsDataset
+Dataset Path: /home/pedrocosta/Dev/Datasets/AgriculturalPestsDataset/images
+Exp path: exp_AgriculturalPestsDataset/(AgriculturalPestsDataset)-vit-da_3-bs_32-lr_1e-05-op_Adam-sh_plateau-epochs_400
+
+>> Inicializando o modelo...
+
+Model: ViT_B_16
+VisionTransformer(
+  (conv_proj): Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))
+  (encoder): Encoder(
+    (dropout): Dropout(p=0.0, inplace=False)
+    (layers): Sequential(
+      (encoder_layer_0): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_1): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_2): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_3): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_4): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_5): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_6): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_7): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_8): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_9): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_10): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_11): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+    )
+    (ln): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+  )
+  (heads): Sequential(
+    (head): Linear(in_features=768, out_features=12, bias=True)
+  )
+)
+criterion = nn.CrossEntropyLoss()
+<torch.optim.lr_scheduler.ReduceLROnPlateau object at 0x7f6e4c48d0c0>
+CrossEntropyLoss()
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 1e-05
+    maximize: False
+    weight_decay: 0
+)
+
+>> Training the model...
+Epoch 0/399 - TRAIN Loss: 1.4893 VAL. Loss: 0.5242 - TRAIN Acc: 0.6135 VAL. Acc: 0.9135 (111.9609 seconds)
+Epoch 1/399 - TRAIN Loss: 0.4254 VAL. Loss: 0.3121 - TRAIN Acc: 0.9036 VAL. Acc: 0.9272 (111.8860 seconds)
+Epoch 2/399 - TRAIN Loss: 0.2894 VAL. Loss: 0.2361 - TRAIN Acc: 0.9261 VAL. Acc: 0.9431 (111.9001 seconds)
+Epoch 3/399 - TRAIN Loss: 0.2066 VAL. Loss: 0.2227 - TRAIN Acc: 0.9454 VAL. Acc: 0.9408 (111.8563 seconds)
+Epoch 4/399 - TRAIN Loss: 0.1719 VAL. Loss: 0.2023 - TRAIN Acc: 0.9565 VAL. Acc: 0.9488 (111.8021 seconds)
+Epoch 5/399 - TRAIN Loss: 0.1315 VAL. Loss: 0.2021 - TRAIN Acc: 0.9690 VAL. Acc: 0.9420 (111.9287 seconds)
+Epoch 6/399 - TRAIN Loss: 0.1144 VAL. Loss: 0.1615 - TRAIN Acc: 0.9727 VAL. Acc: 0.9590 (111.8722 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 7/399 - TRAIN Loss: 0.1259 VAL. Loss: 0.1841 - TRAIN Acc: 0.9656 VAL. Acc: 0.9477 (108.6499 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 8/399 - TRAIN Loss: 0.0970 VAL. Loss: 0.1903 - TRAIN Acc: 0.9750 VAL. Acc: 0.9408 (108.6315 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 9/399 - TRAIN Loss: 0.0918 VAL. Loss: 0.1932 - TRAIN Acc: 0.9772 VAL. Acc: 0.9386 (108.7910 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 10/399 - TRAIN Loss: 0.0867 VAL. Loss: 0.1698 - TRAIN Acc: 0.9772 VAL. Acc: 0.9522 (108.6167 seconds)
+EarlyStopping counter: 5 out of 21
+Epoch 11/399 - TRAIN Loss: 0.0798 VAL. Loss: 0.1738 - TRAIN Acc: 0.9775 VAL. Acc: 0.9499 (108.5320 seconds)
+EarlyStopping counter: 6 out of 21
+Epoch 12/399 - TRAIN Loss: 0.0731 VAL. Loss: 0.1760 - TRAIN Acc: 0.9804 VAL. Acc: 0.9465 (108.5738 seconds)
+EarlyStopping counter: 7 out of 21
+Epoch 13/399 - TRAIN Loss: 0.0573 VAL. Loss: 0.1843 - TRAIN Acc: 0.9849 VAL. Acc: 0.9465 (108.5159 seconds)
+EarlyStopping counter: 8 out of 21
+Epoch 14/399 - TRAIN Loss: 0.0586 VAL. Loss: 0.1884 - TRAIN Acc: 0.9861 VAL. Acc: 0.9363 (108.5992 seconds)
+EarlyStopping counter: 9 out of 21
+Epoch 15/399 - TRAIN Loss: 0.0466 VAL. Loss: 0.1926 - TRAIN Acc: 0.9889 VAL. Acc: 0.9465 (108.6491 seconds)
+EarlyStopping counter: 10 out of 21
+Epoch 16/399 - TRAIN Loss: 0.0531 VAL. Loss: 0.1986 - TRAIN Acc: 0.9863 VAL. Acc: 0.9363 (108.6675 seconds)
+EarlyStopping counter: 11 out of 21
+Epoch 17/399 - TRAIN Loss: 0.0609 VAL. Loss: 0.2012 - TRAIN Acc: 0.9824 VAL. Acc: 0.9431 (108.5845 seconds)
+EarlyStopping counter: 12 out of 21
+Epoch 18/399 - TRAIN Loss: 0.0456 VAL. Loss: 0.1879 - TRAIN Acc: 0.9889 VAL. Acc: 0.9488 (108.6493 seconds)
+EarlyStopping counter: 13 out of 21
+Epoch 19/399 - TRAIN Loss: 0.0472 VAL. Loss: 0.1878 - TRAIN Acc: 0.9883 VAL. Acc: 0.9522 (108.5470 seconds)
+EarlyStopping counter: 14 out of 21
+Epoch 20/399 - TRAIN Loss: 0.0486 VAL. Loss: 0.1865 - TRAIN Acc: 0.9881 VAL. Acc: 0.9454 (108.6278 seconds)
+EarlyStopping counter: 15 out of 21
+Epoch 21/399 - TRAIN Loss: 0.0390 VAL. Loss: 0.1888 - TRAIN Acc: 0.9886 VAL. Acc: 0.9477 (108.5428 seconds)
+EarlyStopping counter: 16 out of 21
+Epoch 22/399 - TRAIN Loss: 0.0378 VAL. Loss: 0.1858 - TRAIN Acc: 0.9903 VAL. Acc: 0.9499 (108.6969 seconds)
+EarlyStopping counter: 17 out of 21
+Epoch 23/399 - TRAIN Loss: 0.0413 VAL. Loss: 0.1844 - TRAIN Acc: 0.9878 VAL. Acc: 0.9511 (108.6363 seconds)
+EarlyStopping counter: 18 out of 21
+Epoch 24/399 - TRAIN Loss: 0.0334 VAL. Loss: 0.1824 - TRAIN Acc: 0.9915 VAL. Acc: 0.9511 (108.4898 seconds)
+EarlyStopping counter: 19 out of 21
+Epoch 25/399 - TRAIN Loss: 0.0352 VAL. Loss: 0.1754 - TRAIN Acc: 0.9926 VAL. Acc: 0.9556 (108.4927 seconds)
+EarlyStopping counter: 20 out of 21
+Epoch 26/399 - TRAIN Loss: 0.0447 VAL. Loss: 0.1739 - TRAIN Acc: 0.9872 VAL. Acc: 0.9556 (108.5096 seconds)
+EarlyStopping counter: 21 out of 21
+Early stopping in epoch 6!
+Treinamento finalizado. (51m 3s)
+TEST. Acc.: 0.9454
+VAL. Acc.: 0.9590
+
+>> Relatório do conjunto de experimentos...
+
+Done!
+
+
+Running in Colab: False
+Configurando GPU...
+
+Device: cuda
+ds: AgriculturalPestsDataset
+arch: alexnet
+optim: none
+sm: True
+seed: 42
+num_workers: 0
+debug: False
+bs: 128
+lr: 1e-05
+mm: 0.9
+ss: 5
+ep: 400
+optimizer: Adam
+scheduler: plateau
+ft: True
+da: 4
+bce: True
+xai: False
+es: True
+patience: 21
+delta: 0.0001
+wandb: False
+ec: 6
+fold: 1
+magnification: 
+Dataset: AgriculturalPestsDataset
+Dataset Path: /home/pedrocosta/Dev/Datasets/AgriculturalPestsDataset/images
+Exp path: exp_AgriculturalPestsDataset/(AgriculturalPestsDataset)-alexnet-da_4-bs_128-lr_1e-05-op_Adam-sh_plateau-epochs_400
+
+>> Inicializando o modelo...
+
+Model: AlexNet
+AlexNet(
+  (features): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(11, 11), stride=(4, 4), padding=(2, 2))
+    (1): ReLU(inplace=True)
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (3): Conv2d(64, 192, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (4): ReLU(inplace=True)
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (6): Conv2d(192, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (7): ReLU(inplace=True)
+    (8): Conv2d(384, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (9): ReLU(inplace=True)
+    (10): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (11): ReLU(inplace=True)
+    (12): MaxPool2d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(6, 6))
+  (classifier): Sequential(
+    (0): Dropout(p=0.5, inplace=False)
+    (1): Linear(in_features=9216, out_features=4096, bias=True)
+    (2): ReLU(inplace=True)
+    (3): Dropout(p=0.5, inplace=False)
+    (4): Linear(in_features=4096, out_features=4096, bias=True)
+    (5): ReLU(inplace=True)
+    (6): Linear(in_features=4096, out_features=12, bias=True)
+  )
+)
+criterion = nn.CrossEntropyLoss()
+<torch.optim.lr_scheduler.ReduceLROnPlateau object at 0x7f24e27adc90>
+CrossEntropyLoss()
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 1e-05
+    maximize: False
+    weight_decay: 0
+)
+
+>> Training the model...
+Epoch 0/399 - TRAIN Loss: 2.3400 VAL. Loss: 1.9374 - TRAIN Acc: 0.2056 VAL. Acc: 0.4346 (26.5910 seconds)
+Epoch 1/399 - TRAIN Loss: 1.8193 VAL. Loss: 1.4376 - TRAIN Acc: 0.4485 VAL. Acc: 0.5700 (26.4084 seconds)
+Epoch 2/399 - TRAIN Loss: 1.4044 VAL. Loss: 1.0892 - TRAIN Acc: 0.5611 VAL. Acc: 0.6542 (26.3455 seconds)
+Epoch 3/399 - TRAIN Loss: 1.1549 VAL. Loss: 0.9140 - TRAIN Acc: 0.6288 VAL. Acc: 0.6974 (26.3172 seconds)
+Epoch 4/399 - TRAIN Loss: 1.0146 VAL. Loss: 0.8166 - TRAIN Acc: 0.6709 VAL. Acc: 0.7292 (26.2849 seconds)
+Epoch 5/399 - TRAIN Loss: 0.9207 VAL. Loss: 0.7729 - TRAIN Acc: 0.6980 VAL. Acc: 0.7372 (26.2295 seconds)
+Epoch 6/399 - TRAIN Loss: 0.8423 VAL. Loss: 0.7266 - TRAIN Acc: 0.7221 VAL. Acc: 0.7440 (26.2491 seconds)
+Epoch 7/399 - TRAIN Loss: 0.7959 VAL. Loss: 0.6853 - TRAIN Acc: 0.7287 VAL. Acc: 0.7577 (26.2072 seconds)
+Epoch 8/399 - TRAIN Loss: 0.7533 VAL. Loss: 0.6744 - TRAIN Acc: 0.7454 VAL. Acc: 0.7611 (26.3071 seconds)
+Epoch 9/399 - TRAIN Loss: 0.7189 VAL. Loss: 0.6520 - TRAIN Acc: 0.7511 VAL. Acc: 0.7679 (26.2810 seconds)
+Epoch 10/399 - TRAIN Loss: 0.6900 VAL. Loss: 0.6466 - TRAIN Acc: 0.7679 VAL. Acc: 0.7747 (26.3045 seconds)
+Epoch 11/399 - TRAIN Loss: 0.6535 VAL. Loss: 0.6334 - TRAIN Acc: 0.7796 VAL. Acc: 0.7747 (26.2995 seconds)
+Epoch 12/399 - TRAIN Loss: 0.6295 VAL. Loss: 0.6286 - TRAIN Acc: 0.7853 VAL. Acc: 0.7804 (26.3118 seconds)
+Epoch 13/399 - TRAIN Loss: 0.6027 VAL. Loss: 0.6218 - TRAIN Acc: 0.7932 VAL. Acc: 0.7861 (26.2604 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 14/399 - TRAIN Loss: 0.5951 VAL. Loss: 0.6279 - TRAIN Acc: 0.7910 VAL. Acc: 0.7861 (23.9732 seconds)
+Epoch 15/399 - TRAIN Loss: 0.5680 VAL. Loss: 0.6075 - TRAIN Acc: 0.8106 VAL. Acc: 0.7918 (26.2555 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 16/399 - TRAIN Loss: 0.5558 VAL. Loss: 0.6087 - TRAIN Acc: 0.8106 VAL. Acc: 0.7929 (23.9257 seconds)
+Epoch 17/399 - TRAIN Loss: 0.5324 VAL. Loss: 0.6041 - TRAIN Acc: 0.8225 VAL. Acc: 0.7929 (26.1712 seconds)
+Epoch 18/399 - TRAIN Loss: 0.5065 VAL. Loss: 0.5855 - TRAIN Acc: 0.8282 VAL. Acc: 0.8055 (26.2613 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 19/399 - TRAIN Loss: 0.4888 VAL. Loss: 0.5976 - TRAIN Acc: 0.8353 VAL. Acc: 0.8020 (23.9889 seconds)
+Epoch 20/399 - TRAIN Loss: 0.4909 VAL. Loss: 0.5822 - TRAIN Acc: 0.8433 VAL. Acc: 0.7986 (26.3016 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 21/399 - TRAIN Loss: 0.4838 VAL. Loss: 0.5907 - TRAIN Acc: 0.8322 VAL. Acc: 0.8089 (24.1038 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 22/399 - TRAIN Loss: 0.4532 VAL. Loss: 0.6022 - TRAIN Acc: 0.8527 VAL. Acc: 0.8009 (24.0648 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 23/399 - TRAIN Loss: 0.4510 VAL. Loss: 0.5859 - TRAIN Acc: 0.8464 VAL. Acc: 0.8020 (23.9898 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 24/399 - TRAIN Loss: 0.4240 VAL. Loss: 0.5889 - TRAIN Acc: 0.8612 VAL. Acc: 0.8089 (24.0405 seconds)
+EarlyStopping counter: 5 out of 21
+Epoch 25/399 - TRAIN Loss: 0.3988 VAL. Loss: 0.5889 - TRAIN Acc: 0.8680 VAL. Acc: 0.8111 (23.9890 seconds)
+EarlyStopping counter: 6 out of 21
+Epoch 26/399 - TRAIN Loss: 0.4026 VAL. Loss: 0.5822 - TRAIN Acc: 0.8623 VAL. Acc: 0.8157 (24.0305 seconds)
+Epoch 27/399 - TRAIN Loss: 0.3905 VAL. Loss: 0.5795 - TRAIN Acc: 0.8706 VAL. Acc: 0.8134 (26.2186 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 28/399 - TRAIN Loss: 0.3792 VAL. Loss: 0.5829 - TRAIN Acc: 0.8723 VAL. Acc: 0.8203 (23.9874 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 29/399 - TRAIN Loss: 0.3787 VAL. Loss: 0.5874 - TRAIN Acc: 0.8768 VAL. Acc: 0.8134 (23.9508 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 30/399 - TRAIN Loss: 0.3438 VAL. Loss: 0.5982 - TRAIN Acc: 0.8868 VAL. Acc: 0.8111 (23.9412 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 31/399 - TRAIN Loss: 0.3464 VAL. Loss: 0.6040 - TRAIN Acc: 0.8817 VAL. Acc: 0.8089 (23.9012 seconds)
+EarlyStopping counter: 5 out of 21
+Epoch 32/399 - TRAIN Loss: 0.3447 VAL. Loss: 0.6091 - TRAIN Acc: 0.8800 VAL. Acc: 0.8066 (24.0167 seconds)
+EarlyStopping counter: 6 out of 21
+Epoch 33/399 - TRAIN Loss: 0.3368 VAL. Loss: 0.5967 - TRAIN Acc: 0.8868 VAL. Acc: 0.8089 (23.9355 seconds)
+EarlyStopping counter: 7 out of 21
+Epoch 34/399 - TRAIN Loss: 0.3199 VAL. Loss: 0.5985 - TRAIN Acc: 0.8956 VAL. Acc: 0.8180 (23.9141 seconds)
+EarlyStopping counter: 8 out of 21
+Epoch 35/399 - TRAIN Loss: 0.3149 VAL. Loss: 0.5850 - TRAIN Acc: 0.8987 VAL. Acc: 0.8191 (23.9263 seconds)
+EarlyStopping counter: 9 out of 21
+Epoch 36/399 - TRAIN Loss: 0.3036 VAL. Loss: 0.6002 - TRAIN Acc: 0.8942 VAL. Acc: 0.8134 (23.9410 seconds)
+EarlyStopping counter: 10 out of 21
+Epoch 37/399 - TRAIN Loss: 0.3106 VAL. Loss: 0.5856 - TRAIN Acc: 0.8948 VAL. Acc: 0.8168 (23.9253 seconds)
+EarlyStopping counter: 11 out of 21
+Epoch 38/399 - TRAIN Loss: 0.2995 VAL. Loss: 0.5934 - TRAIN Acc: 0.8999 VAL. Acc: 0.8146 (23.9737 seconds)
+EarlyStopping counter: 12 out of 21
+Epoch 39/399 - TRAIN Loss: 0.2639 VAL. Loss: 0.5905 - TRAIN Acc: 0.9101 VAL. Acc: 0.8168 (23.9190 seconds)
+EarlyStopping counter: 13 out of 21
+Epoch 40/399 - TRAIN Loss: 0.2802 VAL. Loss: 0.5916 - TRAIN Acc: 0.9093 VAL. Acc: 0.8168 (23.9572 seconds)
+EarlyStopping counter: 14 out of 21
+Epoch 41/399 - TRAIN Loss: 0.2750 VAL. Loss: 0.5945 - TRAIN Acc: 0.9113 VAL. Acc: 0.8123 (23.9888 seconds)
+EarlyStopping counter: 15 out of 21
+Epoch 42/399 - TRAIN Loss: 0.2848 VAL. Loss: 0.5929 - TRAIN Acc: 0.9059 VAL. Acc: 0.8146 (23.9717 seconds)
+EarlyStopping counter: 16 out of 21
+Epoch 43/399 - TRAIN Loss: 0.2747 VAL. Loss: 0.5904 - TRAIN Acc: 0.9061 VAL. Acc: 0.8157 (23.9026 seconds)
+EarlyStopping counter: 17 out of 21
+Epoch 44/399 - TRAIN Loss: 0.2780 VAL. Loss: 0.5930 - TRAIN Acc: 0.9076 VAL. Acc: 0.8180 (23.9723 seconds)
+EarlyStopping counter: 18 out of 21
+Epoch 45/399 - TRAIN Loss: 0.2722 VAL. Loss: 0.5932 - TRAIN Acc: 0.9056 VAL. Acc: 0.8134 (23.9194 seconds)
+EarlyStopping counter: 19 out of 21
+Epoch 46/399 - TRAIN Loss: 0.2727 VAL. Loss: 0.5918 - TRAIN Acc: 0.9107 VAL. Acc: 0.8146 (24.0896 seconds)
+EarlyStopping counter: 20 out of 21
+Epoch 47/399 - TRAIN Loss: 0.2708 VAL. Loss: 0.5921 - TRAIN Acc: 0.9064 VAL. Acc: 0.8157 (23.9285 seconds)
+EarlyStopping counter: 21 out of 21
+Early stopping in epoch 27!
+Treinamento finalizado. (20m 18s)
+TEST. Acc.: 0.8144
+VAL. Acc.: 0.8134
+
+>> Relatório do conjunto de experimentos...
+
+Done!
+
+
+Running in Colab: False
+Configurando GPU...
+
+Device: cuda
+ds: AgriculturalPestsDataset
+arch: resnet50
+optim: none
+sm: True
+seed: 42
+num_workers: 0
+debug: False
+bs: 16
+lr: 1e-05
+mm: 0.9
+ss: 5
+ep: 400
+optimizer: Adam
+scheduler: plateau
+ft: True
+da: 4
+bce: True
+xai: False
+es: True
+patience: 21
+delta: 0.0001
+wandb: False
+ec: 7
+fold: 1
+magnification: 
+Dataset: AgriculturalPestsDataset
+Dataset Path: /home/pedrocosta/Dev/Datasets/AgriculturalPestsDataset/images
+Exp path: exp_AgriculturalPestsDataset/(AgriculturalPestsDataset)-resnet50-da_4-bs_16-lr_1e-05-op_Adam-sh_plateau-epochs_400
+
+>> Inicializando o modelo...
+
+Model: ResNet50
+ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu): ReLU(inplace=True)
+  (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  (layer1): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer2): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (3): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer3): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (3): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (4): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (5): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer4): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(1024, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (fc): Linear(in_features=2048, out_features=12, bias=True)
+)
+criterion = nn.CrossEntropyLoss()
+<torch.optim.lr_scheduler.ReduceLROnPlateau object at 0x7f6fb5bc7c40>
+CrossEntropyLoss()
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 1e-05
+    maximize: False
+    weight_decay: 0
+)
+
+>> Training the model...
+Epoch 0/399 - TRAIN Loss: 1.7896 VAL. Loss: 0.8820 - TRAIN Acc: 0.5378 VAL. Acc: 0.8111 (83.6292 seconds)
+Epoch 1/399 - TRAIN Loss: 0.8610 VAL. Loss: 0.4534 - TRAIN Acc: 0.7998 VAL. Acc: 0.8919 (83.2025 seconds)
+Epoch 2/399 - TRAIN Loss: 0.5628 VAL. Loss: 0.3328 - TRAIN Acc: 0.8575 VAL. Acc: 0.9181 (83.2791 seconds)
+Epoch 3/399 - TRAIN Loss: 0.4206 VAL. Loss: 0.2850 - TRAIN Acc: 0.8865 VAL. Acc: 0.9124 (83.1109 seconds)
+Epoch 4/399 - TRAIN Loss: 0.3798 VAL. Loss: 0.2525 - TRAIN Acc: 0.8951 VAL. Acc: 0.9261 (83.1704 seconds)
+Epoch 5/399 - TRAIN Loss: 0.3118 VAL. Loss: 0.2514 - TRAIN Acc: 0.9195 VAL. Acc: 0.9226 (83.0253 seconds)
+Epoch 6/399 - TRAIN Loss: 0.2732 VAL. Loss: 0.2450 - TRAIN Acc: 0.9224 VAL. Acc: 0.9238 (83.1668 seconds)
+Epoch 7/399 - TRAIN Loss: 0.2342 VAL. Loss: 0.2388 - TRAIN Acc: 0.9386 VAL. Acc: 0.9340 (83.2138 seconds)
+Epoch 8/399 - TRAIN Loss: 0.2099 VAL. Loss: 0.2329 - TRAIN Acc: 0.9411 VAL. Acc: 0.9249 (83.1873 seconds)
+Epoch 9/399 - TRAIN Loss: 0.1938 VAL. Loss: 0.2279 - TRAIN Acc: 0.9480 VAL. Acc: 0.9306 (82.9968 seconds)
+Epoch 10/399 - TRAIN Loss: 0.1719 VAL. Loss: 0.2215 - TRAIN Acc: 0.9556 VAL. Acc: 0.9317 (82.9947 seconds)
+Epoch 11/399 - TRAIN Loss: 0.1709 VAL. Loss: 0.2192 - TRAIN Acc: 0.9534 VAL. Acc: 0.9352 (83.1879 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 12/399 - TRAIN Loss: 0.1507 VAL. Loss: 0.2250 - TRAIN Acc: 0.9608 VAL. Acc: 0.9340 (82.3527 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 13/399 - TRAIN Loss: 0.1272 VAL. Loss: 0.2215 - TRAIN Acc: 0.9653 VAL. Acc: 0.9317 (82.3860 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 14/399 - TRAIN Loss: 0.1134 VAL. Loss: 0.2266 - TRAIN Acc: 0.9716 VAL. Acc: 0.9363 (82.2162 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 15/399 - TRAIN Loss: 0.1325 VAL. Loss: 0.2330 - TRAIN Acc: 0.9656 VAL. Acc: 0.9295 (82.1413 seconds)
+EarlyStopping counter: 5 out of 21
+Epoch 16/399 - TRAIN Loss: 0.1135 VAL. Loss: 0.2252 - TRAIN Acc: 0.9704 VAL. Acc: 0.9329 (82.1724 seconds)
+EarlyStopping counter: 6 out of 21
+Epoch 17/399 - TRAIN Loss: 0.1007 VAL. Loss: 0.2317 - TRAIN Acc: 0.9724 VAL. Acc: 0.9329 (82.1668 seconds)
+EarlyStopping counter: 7 out of 21
+Epoch 18/399 - TRAIN Loss: 0.0968 VAL. Loss: 0.2244 - TRAIN Acc: 0.9747 VAL. Acc: 0.9340 (82.0636 seconds)
+EarlyStopping counter: 8 out of 21
+Epoch 19/399 - TRAIN Loss: 0.1093 VAL. Loss: 0.2325 - TRAIN Acc: 0.9716 VAL. Acc: 0.9306 (82.2047 seconds)
+EarlyStopping counter: 9 out of 21
+Epoch 20/399 - TRAIN Loss: 0.0941 VAL. Loss: 0.2470 - TRAIN Acc: 0.9730 VAL. Acc: 0.9283 (82.3185 seconds)
+EarlyStopping counter: 10 out of 21
+Epoch 21/399 - TRAIN Loss: 0.0858 VAL. Loss: 0.2331 - TRAIN Acc: 0.9764 VAL. Acc: 0.9295 (82.1582 seconds)
+EarlyStopping counter: 11 out of 21
+Epoch 22/399 - TRAIN Loss: 0.0797 VAL. Loss: 0.2271 - TRAIN Acc: 0.9787 VAL. Acc: 0.9408 (82.2170 seconds)
+EarlyStopping counter: 12 out of 21
+Epoch 23/399 - TRAIN Loss: 0.0739 VAL. Loss: 0.2250 - TRAIN Acc: 0.9790 VAL. Acc: 0.9352 (82.2218 seconds)
+EarlyStopping counter: 13 out of 21
+Epoch 24/399 - TRAIN Loss: 0.0819 VAL. Loss: 0.2318 - TRAIN Acc: 0.9784 VAL. Acc: 0.9306 (82.2388 seconds)
+Epoch 25/399 - TRAIN Loss: 0.0736 VAL. Loss: 0.2120 - TRAIN Acc: 0.9775 VAL. Acc: 0.9397 (83.0598 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 26/399 - TRAIN Loss: 0.0702 VAL. Loss: 0.2131 - TRAIN Acc: 0.9827 VAL. Acc: 0.9454 (82.2654 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 27/399 - TRAIN Loss: 0.0729 VAL. Loss: 0.2301 - TRAIN Acc: 0.9804 VAL. Acc: 0.9329 (82.3585 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 28/399 - TRAIN Loss: 0.0758 VAL. Loss: 0.2292 - TRAIN Acc: 0.9798 VAL. Acc: 0.9340 (82.2716 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 29/399 - TRAIN Loss: 0.0580 VAL. Loss: 0.2257 - TRAIN Acc: 0.9849 VAL. Acc: 0.9340 (82.3448 seconds)
+EarlyStopping counter: 5 out of 21
+Epoch 30/399 - TRAIN Loss: 0.0548 VAL. Loss: 0.2209 - TRAIN Acc: 0.9869 VAL. Acc: 0.9408 (82.3609 seconds)
+EarlyStopping counter: 6 out of 21
+Epoch 31/399 - TRAIN Loss: 0.0726 VAL. Loss: 0.2257 - TRAIN Acc: 0.9846 VAL. Acc: 0.9295 (82.3591 seconds)
+EarlyStopping counter: 7 out of 21
+Epoch 32/399 - TRAIN Loss: 0.0566 VAL. Loss: 0.2307 - TRAIN Acc: 0.9875 VAL. Acc: 0.9329 (82.1283 seconds)
+EarlyStopping counter: 8 out of 21
+Epoch 33/399 - TRAIN Loss: 0.0639 VAL. Loss: 0.2260 - TRAIN Acc: 0.9841 VAL. Acc: 0.9374 (82.2123 seconds)
+EarlyStopping counter: 9 out of 21
+Epoch 34/399 - TRAIN Loss: 0.0678 VAL. Loss: 0.2288 - TRAIN Acc: 0.9792 VAL. Acc: 0.9363 (82.1804 seconds)
+EarlyStopping counter: 10 out of 21
+Epoch 35/399 - TRAIN Loss: 0.0663 VAL. Loss: 0.2226 - TRAIN Acc: 0.9838 VAL. Acc: 0.9386 (82.1997 seconds)
+EarlyStopping counter: 11 out of 21
+Epoch 36/399 - TRAIN Loss: 0.0684 VAL. Loss: 0.2197 - TRAIN Acc: 0.9815 VAL. Acc: 0.9363 (82.4010 seconds)
+EarlyStopping counter: 12 out of 21
+Epoch 37/399 - TRAIN Loss: 0.0564 VAL. Loss: 0.2234 - TRAIN Acc: 0.9866 VAL. Acc: 0.9352 (82.3921 seconds)
+EarlyStopping counter: 13 out of 21
+Epoch 38/399 - TRAIN Loss: 0.0615 VAL. Loss: 0.2290 - TRAIN Acc: 0.9841 VAL. Acc: 0.9352 (82.2843 seconds)
+EarlyStopping counter: 14 out of 21
+Epoch 39/399 - TRAIN Loss: 0.0611 VAL. Loss: 0.2282 - TRAIN Acc: 0.9832 VAL. Acc: 0.9340 (82.1962 seconds)
+EarlyStopping counter: 15 out of 21
+Epoch 40/399 - TRAIN Loss: 0.0603 VAL. Loss: 0.2188 - TRAIN Acc: 0.9844 VAL. Acc: 0.9340 (82.3757 seconds)
+EarlyStopping counter: 16 out of 21
+Epoch 41/399 - TRAIN Loss: 0.0642 VAL. Loss: 0.2277 - TRAIN Acc: 0.9809 VAL. Acc: 0.9317 (82.2440 seconds)
+EarlyStopping counter: 17 out of 21
+Epoch 42/399 - TRAIN Loss: 0.0668 VAL. Loss: 0.2231 - TRAIN Acc: 0.9844 VAL. Acc: 0.9295 (82.2317 seconds)
+EarlyStopping counter: 18 out of 21
+Epoch 43/399 - TRAIN Loss: 0.0702 VAL. Loss: 0.2321 - TRAIN Acc: 0.9792 VAL. Acc: 0.9352 (82.2128 seconds)
+EarlyStopping counter: 19 out of 21
+Epoch 44/399 - TRAIN Loss: 0.0545 VAL. Loss: 0.2210 - TRAIN Acc: 0.9872 VAL. Acc: 0.9363 (82.2295 seconds)
+EarlyStopping counter: 20 out of 21
+Epoch 45/399 - TRAIN Loss: 0.0515 VAL. Loss: 0.2338 - TRAIN Acc: 0.9872 VAL. Acc: 0.9317 (82.2772 seconds)
+EarlyStopping counter: 21 out of 21
+Early stopping in epoch 25!
+Treinamento finalizado. (64m 37s)
+TEST. Acc.: 0.9381
+VAL. Acc.: 0.9397
+
+>> Relatório do conjunto de experimentos...
+
+Done!
+
+
+Running in Colab: False
+Configurando GPU...
+
+Device: cuda
+ds: AgriculturalPestsDataset
+arch: vit
+optim: none
+sm: True
+seed: 42
+num_workers: 0
+debug: False
+bs: 32
+lr: 1e-05
+mm: 0.9
+ss: 5
+ep: 400
+optimizer: Adam
+scheduler: plateau
+ft: True
+da: 4
+bce: True
+xai: False
+es: True
+patience: 21
+delta: 0.0001
+wandb: False
+ec: 8
+fold: 1
+magnification: 
+Dataset: AgriculturalPestsDataset
+Dataset Path: /home/pedrocosta/Dev/Datasets/AgriculturalPestsDataset/images
+Exp path: exp_AgriculturalPestsDataset/(AgriculturalPestsDataset)-vit-da_4-bs_32-lr_1e-05-op_Adam-sh_plateau-epochs_400
+
+>> Inicializando o modelo...
+
+Model: ViT_B_16
+VisionTransformer(
+  (conv_proj): Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))
+  (encoder): Encoder(
+    (dropout): Dropout(p=0.0, inplace=False)
+    (layers): Sequential(
+      (encoder_layer_0): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_1): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_2): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_3): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_4): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_5): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_6): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_7): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_8): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_9): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_10): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_11): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+    )
+    (ln): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+  )
+  (heads): Sequential(
+    (head): Linear(in_features=768, out_features=12, bias=True)
+  )
+)
+criterion = nn.CrossEntropyLoss()
+<torch.optim.lr_scheduler.ReduceLROnPlateau object at 0x7f1b37cc5000>
+CrossEntropyLoss()
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 1e-05
+    maximize: False
+    weight_decay: 0
+)
+
+>> Training the model...
+Epoch 0/399 - TRAIN Loss: 1.2005 VAL. Loss: 0.4209 - TRAIN Acc: 0.7477 VAL. Acc: 0.9249 (99.3260 seconds)
+Epoch 1/399 - TRAIN Loss: 0.3236 VAL. Loss: 0.2653 - TRAIN Acc: 0.9246 VAL. Acc: 0.9374 (99.1609 seconds)
+Epoch 2/399 - TRAIN Loss: 0.2087 VAL. Loss: 0.1971 - TRAIN Acc: 0.9468 VAL. Acc: 0.9511 (99.2236 seconds)
+Epoch 3/399 - TRAIN Loss: 0.1499 VAL. Loss: 0.1876 - TRAIN Acc: 0.9647 VAL. Acc: 0.9556 (99.2101 seconds)
+Epoch 4/399 - TRAIN Loss: 0.1133 VAL. Loss: 0.1815 - TRAIN Acc: 0.9730 VAL. Acc: 0.9556 (99.0777 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 5/399 - TRAIN Loss: 0.0883 VAL. Loss: 0.1868 - TRAIN Acc: 0.9801 VAL. Acc: 0.9522 (95.8918 seconds)
+Epoch 6/399 - TRAIN Loss: 0.0758 VAL. Loss: 0.1745 - TRAIN Acc: 0.9835 VAL. Acc: 0.9522 (99.2763 seconds)
+Epoch 7/399 - TRAIN Loss: 0.0608 VAL. Loss: 0.1524 - TRAIN Acc: 0.9852 VAL. Acc: 0.9590 (99.3184 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 8/399 - TRAIN Loss: 0.0573 VAL. Loss: 0.1938 - TRAIN Acc: 0.9846 VAL. Acc: 0.9522 (95.9742 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 9/399 - TRAIN Loss: 0.0521 VAL. Loss: 0.1758 - TRAIN Acc: 0.9878 VAL. Acc: 0.9534 (95.8761 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 10/399 - TRAIN Loss: 0.0448 VAL. Loss: 0.1786 - TRAIN Acc: 0.9883 VAL. Acc: 0.9499 (95.9009 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 11/399 - TRAIN Loss: 0.0502 VAL. Loss: 0.2007 - TRAIN Acc: 0.9886 VAL. Acc: 0.9477 (95.8454 seconds)
+EarlyStopping counter: 5 out of 21
+Epoch 12/399 - TRAIN Loss: 0.0486 VAL. Loss: 0.1599 - TRAIN Acc: 0.9878 VAL. Acc: 0.9534 (95.8732 seconds)
+EarlyStopping counter: 6 out of 21
+Epoch 13/399 - TRAIN Loss: 0.0409 VAL. Loss: 0.1937 - TRAIN Acc: 0.9892 VAL. Acc: 0.9443 (95.7933 seconds)
+EarlyStopping counter: 7 out of 21
+Epoch 14/399 - TRAIN Loss: 0.0443 VAL. Loss: 0.1773 - TRAIN Acc: 0.9869 VAL. Acc: 0.9545 (95.9120 seconds)
+EarlyStopping counter: 8 out of 21
+Epoch 15/399 - TRAIN Loss: 0.0329 VAL. Loss: 0.1897 - TRAIN Acc: 0.9920 VAL. Acc: 0.9499 (95.8458 seconds)
+EarlyStopping counter: 9 out of 21
+Epoch 16/399 - TRAIN Loss: 0.0427 VAL. Loss: 0.1974 - TRAIN Acc: 0.9875 VAL. Acc: 0.9477 (95.9031 seconds)
+EarlyStopping counter: 10 out of 21
+Epoch 17/399 - TRAIN Loss: 0.0331 VAL. Loss: 0.1918 - TRAIN Acc: 0.9923 VAL. Acc: 0.9522 (95.8318 seconds)
+EarlyStopping counter: 11 out of 21
+Epoch 18/399 - TRAIN Loss: 0.0331 VAL. Loss: 0.2010 - TRAIN Acc: 0.9903 VAL. Acc: 0.9465 (95.8970 seconds)
+EarlyStopping counter: 12 out of 21
+Epoch 19/399 - TRAIN Loss: 0.0318 VAL. Loss: 0.1819 - TRAIN Acc: 0.9923 VAL. Acc: 0.9499 (95.8766 seconds)
+EarlyStopping counter: 13 out of 21
+Epoch 20/399 - TRAIN Loss: 0.0267 VAL. Loss: 0.1853 - TRAIN Acc: 0.9920 VAL. Acc: 0.9534 (95.8424 seconds)
+EarlyStopping counter: 14 out of 21
+Epoch 21/399 - TRAIN Loss: 0.0224 VAL. Loss: 0.1792 - TRAIN Acc: 0.9935 VAL. Acc: 0.9511 (95.8655 seconds)
+EarlyStopping counter: 15 out of 21
+Epoch 22/399 - TRAIN Loss: 0.0232 VAL. Loss: 0.1764 - TRAIN Acc: 0.9926 VAL. Acc: 0.9545 (96.0078 seconds)
+EarlyStopping counter: 16 out of 21
+Epoch 23/399 - TRAIN Loss: 0.0261 VAL. Loss: 0.1760 - TRAIN Acc: 0.9920 VAL. Acc: 0.9522 (95.9118 seconds)
+EarlyStopping counter: 17 out of 21
+Epoch 24/399 - TRAIN Loss: 0.0315 VAL. Loss: 0.1750 - TRAIN Acc: 0.9918 VAL. Acc: 0.9534 (95.9502 seconds)
+EarlyStopping counter: 18 out of 21
+Epoch 25/399 - TRAIN Loss: 0.0243 VAL. Loss: 0.1770 - TRAIN Acc: 0.9929 VAL. Acc: 0.9522 (96.0301 seconds)
+EarlyStopping counter: 19 out of 21
+Epoch 26/399 - TRAIN Loss: 0.0143 VAL. Loss: 0.1721 - TRAIN Acc: 0.9977 VAL. Acc: 0.9545 (95.9579 seconds)
+EarlyStopping counter: 20 out of 21
+Epoch 27/399 - TRAIN Loss: 0.0204 VAL. Loss: 0.1806 - TRAIN Acc: 0.9949 VAL. Acc: 0.9545 (96.0633 seconds)
+EarlyStopping counter: 21 out of 21
+Early stopping in epoch 7!
+Treinamento finalizado. (46m 44s)
+TEST. Acc.: 0.9500
+VAL. Acc.: 0.9590
+
+>> Relatório do conjunto de experimentos...
+
+Done!
+
+
+Running in Colab: False
+Configurando GPU...
+
+Device: cuda
+ds: AgriculturalPestsDataset
+arch: alexnet
+optim: none
+sm: True
+seed: 42
+num_workers: 0
+debug: False
+bs: 128
+lr: 1e-05
+mm: 0.9
+ss: 5
+ep: 400
+optimizer: Adam
+scheduler: plateau
+ft: True
+da: 5
+bce: True
+xai: False
+es: True
+patience: 21
+delta: 0.0001
+wandb: False
+ec: 9
+fold: 1
+magnification: 
+Dataset: AgriculturalPestsDataset
+Dataset Path: /home/pedrocosta/Dev/Datasets/AgriculturalPestsDataset/images
+Exp path: exp_AgriculturalPestsDataset/(AgriculturalPestsDataset)-alexnet-da_5-bs_128-lr_1e-05-op_Adam-sh_plateau-epochs_400
+
+>> Inicializando o modelo...
+
+Model: AlexNet
+AlexNet(
+  (features): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(11, 11), stride=(4, 4), padding=(2, 2))
+    (1): ReLU(inplace=True)
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (3): Conv2d(64, 192, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (4): ReLU(inplace=True)
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (6): Conv2d(192, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (7): ReLU(inplace=True)
+    (8): Conv2d(384, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (9): ReLU(inplace=True)
+    (10): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (11): ReLU(inplace=True)
+    (12): MaxPool2d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(6, 6))
+  (classifier): Sequential(
+    (0): Dropout(p=0.5, inplace=False)
+    (1): Linear(in_features=9216, out_features=4096, bias=True)
+    (2): ReLU(inplace=True)
+    (3): Dropout(p=0.5, inplace=False)
+    (4): Linear(in_features=4096, out_features=4096, bias=True)
+    (5): ReLU(inplace=True)
+    (6): Linear(in_features=4096, out_features=12, bias=True)
+  )
+)
+criterion = nn.CrossEntropyLoss()
+<torch.optim.lr_scheduler.ReduceLROnPlateau object at 0x7fe06edd1cf0>
+CrossEntropyLoss()
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 1e-05
+    maximize: False
+    weight_decay: 0
+)
+
+>> Training the model...
+Epoch 0/399 - TRAIN Loss: 2.3655 VAL. Loss: 1.9734 - TRAIN Acc: 0.2002 VAL. Acc: 0.3993 (26.4501 seconds)
+Epoch 1/399 - TRAIN Loss: 1.7367 VAL. Loss: 1.4615 - TRAIN Acc: 0.4809 VAL. Acc: 0.5791 (26.1137 seconds)
+Epoch 2/399 - TRAIN Loss: 1.2680 VAL. Loss: 1.0980 - TRAIN Acc: 0.6143 VAL. Acc: 0.6485 (25.9371 seconds)
+Epoch 3/399 - TRAIN Loss: 0.9795 VAL. Loss: 0.9328 - TRAIN Acc: 0.6806 VAL. Acc: 0.7065 (25.9645 seconds)
+Epoch 4/399 - TRAIN Loss: 0.8390 VAL. Loss: 0.8206 - TRAIN Acc: 0.7159 VAL. Acc: 0.7395 (26.0208 seconds)
+Epoch 5/399 - TRAIN Loss: 0.7413 VAL. Loss: 0.7858 - TRAIN Acc: 0.7543 VAL. Acc: 0.7474 (25.9517 seconds)
+Epoch 6/399 - TRAIN Loss: 0.6675 VAL. Loss: 0.7248 - TRAIN Acc: 0.7810 VAL. Acc: 0.7668 (26.0951 seconds)
+Epoch 7/399 - TRAIN Loss: 0.6265 VAL. Loss: 0.6977 - TRAIN Acc: 0.7918 VAL. Acc: 0.7713 (25.9680 seconds)
+Epoch 8/399 - TRAIN Loss: 0.5631 VAL. Loss: 0.6769 - TRAIN Acc: 0.8146 VAL. Acc: 0.7759 (25.9245 seconds)
+Epoch 9/399 - TRAIN Loss: 0.5265 VAL. Loss: 0.6703 - TRAIN Acc: 0.8234 VAL. Acc: 0.7816 (26.0037 seconds)
+Epoch 10/399 - TRAIN Loss: 0.4961 VAL. Loss: 0.6621 - TRAIN Acc: 0.8305 VAL. Acc: 0.7804 (25.9924 seconds)
+Epoch 11/399 - TRAIN Loss: 0.4583 VAL. Loss: 0.6468 - TRAIN Acc: 0.8450 VAL. Acc: 0.8032 (25.9911 seconds)
+Epoch 12/399 - TRAIN Loss: 0.4510 VAL. Loss: 0.6323 - TRAIN Acc: 0.8527 VAL. Acc: 0.8020 (25.9432 seconds)
+Epoch 13/399 - TRAIN Loss: 0.4152 VAL. Loss: 0.6316 - TRAIN Acc: 0.8618 VAL. Acc: 0.7941 (26.0707 seconds)
+Epoch 14/399 - TRAIN Loss: 0.4049 VAL. Loss: 0.6234 - TRAIN Acc: 0.8606 VAL. Acc: 0.8020 (26.0579 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 15/399 - TRAIN Loss: 0.3707 VAL. Loss: 0.6282 - TRAIN Acc: 0.8768 VAL. Acc: 0.7986 (23.6665 seconds)
+Epoch 16/399 - TRAIN Loss: 0.3611 VAL. Loss: 0.6148 - TRAIN Acc: 0.8805 VAL. Acc: 0.7998 (26.0242 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 17/399 - TRAIN Loss: 0.3388 VAL. Loss: 0.6198 - TRAIN Acc: 0.8828 VAL. Acc: 0.8055 (23.7225 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 18/399 - TRAIN Loss: 0.3250 VAL. Loss: 0.6208 - TRAIN Acc: 0.8925 VAL. Acc: 0.8043 (23.7794 seconds)
+Epoch 19/399 - TRAIN Loss: 0.2962 VAL. Loss: 0.6132 - TRAIN Acc: 0.8987 VAL. Acc: 0.8089 (26.0179 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 20/399 - TRAIN Loss: 0.2842 VAL. Loss: 0.6314 - TRAIN Acc: 0.8999 VAL. Acc: 0.8089 (23.7498 seconds)
+Epoch 21/399 - TRAIN Loss: 0.2831 VAL. Loss: 0.6112 - TRAIN Acc: 0.9078 VAL. Acc: 0.8077 (26.0862 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 22/399 - TRAIN Loss: 0.2547 VAL. Loss: 0.6142 - TRAIN Acc: 0.9152 VAL. Acc: 0.8123 (23.7402 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 23/399 - TRAIN Loss: 0.2442 VAL. Loss: 0.6247 - TRAIN Acc: 0.9181 VAL. Acc: 0.8168 (23.7182 seconds)
+Epoch 24/399 - TRAIN Loss: 0.2326 VAL. Loss: 0.6082 - TRAIN Acc: 0.9184 VAL. Acc: 0.8180 (26.0459 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 25/399 - TRAIN Loss: 0.2302 VAL. Loss: 0.6166 - TRAIN Acc: 0.9261 VAL. Acc: 0.8168 (23.6662 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 26/399 - TRAIN Loss: 0.2032 VAL. Loss: 0.6254 - TRAIN Acc: 0.9315 VAL. Acc: 0.8134 (23.6841 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 27/399 - TRAIN Loss: 0.2031 VAL. Loss: 0.6190 - TRAIN Acc: 0.9323 VAL. Acc: 0.8225 (23.6452 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 28/399 - TRAIN Loss: 0.1943 VAL. Loss: 0.6332 - TRAIN Acc: 0.9374 VAL. Acc: 0.8191 (23.7289 seconds)
+EarlyStopping counter: 5 out of 21
+Epoch 29/399 - TRAIN Loss: 0.1763 VAL. Loss: 0.6403 - TRAIN Acc: 0.9408 VAL. Acc: 0.8180 (23.6530 seconds)
+EarlyStopping counter: 6 out of 21
+Epoch 30/399 - TRAIN Loss: 0.1687 VAL. Loss: 0.6368 - TRAIN Acc: 0.9460 VAL. Acc: 0.8089 (23.7379 seconds)
+EarlyStopping counter: 7 out of 21
+Epoch 31/399 - TRAIN Loss: 0.1749 VAL. Loss: 0.6473 - TRAIN Acc: 0.9406 VAL. Acc: 0.8066 (23.6495 seconds)
+EarlyStopping counter: 8 out of 21
+Epoch 32/399 - TRAIN Loss: 0.1645 VAL. Loss: 0.6405 - TRAIN Acc: 0.9451 VAL. Acc: 0.8180 (23.6689 seconds)
+EarlyStopping counter: 9 out of 21
+Epoch 33/399 - TRAIN Loss: 0.1381 VAL. Loss: 0.6529 - TRAIN Acc: 0.9590 VAL. Acc: 0.8134 (23.6278 seconds)
+EarlyStopping counter: 10 out of 21
+Epoch 34/399 - TRAIN Loss: 0.1527 VAL. Loss: 0.6624 - TRAIN Acc: 0.9525 VAL. Acc: 0.8237 (23.6556 seconds)
+EarlyStopping counter: 11 out of 21
+Epoch 35/399 - TRAIN Loss: 0.1322 VAL. Loss: 0.6655 - TRAIN Acc: 0.9599 VAL. Acc: 0.8123 (23.7418 seconds)
+EarlyStopping counter: 12 out of 21
+Epoch 36/399 - TRAIN Loss: 0.1327 VAL. Loss: 0.6672 - TRAIN Acc: 0.9573 VAL. Acc: 0.8111 (23.6457 seconds)
+EarlyStopping counter: 13 out of 21
+Epoch 37/399 - TRAIN Loss: 0.1272 VAL. Loss: 0.6641 - TRAIN Acc: 0.9613 VAL. Acc: 0.8168 (23.6624 seconds)
+EarlyStopping counter: 14 out of 21
+Epoch 38/399 - TRAIN Loss: 0.1286 VAL. Loss: 0.6612 - TRAIN Acc: 0.9602 VAL. Acc: 0.8146 (23.7648 seconds)
+EarlyStopping counter: 15 out of 21
+Epoch 39/399 - TRAIN Loss: 0.1255 VAL. Loss: 0.6634 - TRAIN Acc: 0.9630 VAL. Acc: 0.8157 (23.7826 seconds)
+EarlyStopping counter: 16 out of 21
+Epoch 40/399 - TRAIN Loss: 0.1215 VAL. Loss: 0.6625 - TRAIN Acc: 0.9639 VAL. Acc: 0.8146 (23.7648 seconds)
+EarlyStopping counter: 17 out of 21
+Epoch 41/399 - TRAIN Loss: 0.1265 VAL. Loss: 0.6642 - TRAIN Acc: 0.9579 VAL. Acc: 0.8146 (23.7043 seconds)
+EarlyStopping counter: 18 out of 21
+Epoch 42/399 - TRAIN Loss: 0.1219 VAL. Loss: 0.6624 - TRAIN Acc: 0.9605 VAL. Acc: 0.8168 (23.6809 seconds)
+EarlyStopping counter: 19 out of 21
+Epoch 43/399 - TRAIN Loss: 0.1166 VAL. Loss: 0.6537 - TRAIN Acc: 0.9633 VAL. Acc: 0.8168 (23.6692 seconds)
+EarlyStopping counter: 20 out of 21
+Epoch 44/399 - TRAIN Loss: 0.1314 VAL. Loss: 0.6598 - TRAIN Acc: 0.9553 VAL. Acc: 0.8146 (23.7395 seconds)
+EarlyStopping counter: 21 out of 21
+Early stopping in epoch 24!
+Treinamento finalizado. (18m 54s)
+TEST. Acc.: 0.8107
+VAL. Acc.: 0.8180
+
+>> Relatório do conjunto de experimentos...
+
+Done!
+
+
+Running in Colab: False
+Configurando GPU...
+
+Device: cuda
+ds: AgriculturalPestsDataset
+arch: resnet50
+optim: none
+sm: True
+seed: 42
+num_workers: 0
+debug: False
+bs: 16
+lr: 1e-05
+mm: 0.9
+ss: 5
+ep: 400
+optimizer: Adam
+scheduler: plateau
+ft: True
+da: 5
+bce: True
+xai: False
+es: True
+patience: 21
+delta: 0.0001
+wandb: False
+ec: 10
+fold: 1
+magnification: 
+Dataset: AgriculturalPestsDataset
+Dataset Path: /home/pedrocosta/Dev/Datasets/AgriculturalPestsDataset/images
+Exp path: exp_AgriculturalPestsDataset/(AgriculturalPestsDataset)-resnet50-da_5-bs_16-lr_1e-05-op_Adam-sh_plateau-epochs_400
+
+>> Inicializando o modelo...
+
+Model: ResNet50
+ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu): ReLU(inplace=True)
+  (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  (layer1): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer2): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (3): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer3): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (3): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (4): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (5): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer4): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(1024, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (fc): Linear(in_features=2048, out_features=12, bias=True)
+)
+criterion = nn.CrossEntropyLoss()
+<torch.optim.lr_scheduler.ReduceLROnPlateau object at 0x7f40efd9bc10>
+CrossEntropyLoss()
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 1e-05
+    maximize: False
+    weight_decay: 0
+)
+
+>> Training the model...
+Epoch 0/399 - TRAIN Loss: 1.6588 VAL. Loss: 0.8414 - TRAIN Acc: 0.5950 VAL. Acc: 0.8476 (82.9623 seconds)
+Epoch 1/399 - TRAIN Loss: 0.7067 VAL. Loss: 0.4224 - TRAIN Acc: 0.8538 VAL. Acc: 0.9078 (82.5782 seconds)
+Epoch 2/399 - TRAIN Loss: 0.4316 VAL. Loss: 0.3258 - TRAIN Acc: 0.8905 VAL. Acc: 0.9170 (82.6219 seconds)
+Epoch 3/399 - TRAIN Loss: 0.3116 VAL. Loss: 0.2801 - TRAIN Acc: 0.9292 VAL. Acc: 0.9113 (82.5873 seconds)
+Epoch 4/399 - TRAIN Loss: 0.2546 VAL. Loss: 0.2715 - TRAIN Acc: 0.9334 VAL. Acc: 0.9215 (82.5625 seconds)
+Epoch 5/399 - TRAIN Loss: 0.2061 VAL. Loss: 0.2615 - TRAIN Acc: 0.9514 VAL. Acc: 0.9147 (82.6574 seconds)
+Epoch 6/399 - TRAIN Loss: 0.1668 VAL. Loss: 0.2449 - TRAIN Acc: 0.9593 VAL. Acc: 0.9215 (82.5307 seconds)
+Epoch 7/399 - TRAIN Loss: 0.1320 VAL. Loss: 0.2251 - TRAIN Acc: 0.9701 VAL. Acc: 0.9215 (82.6334 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 8/399 - TRAIN Loss: 0.1129 VAL. Loss: 0.2403 - TRAIN Acc: 0.9747 VAL. Acc: 0.9249 (81.7441 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 9/399 - TRAIN Loss: 0.1009 VAL. Loss: 0.2503 - TRAIN Acc: 0.9744 VAL. Acc: 0.9204 (81.7399 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 10/399 - TRAIN Loss: 0.0925 VAL. Loss: 0.2442 - TRAIN Acc: 0.9778 VAL. Acc: 0.9238 (81.6833 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 11/399 - TRAIN Loss: 0.0706 VAL. Loss: 0.2428 - TRAIN Acc: 0.9855 VAL. Acc: 0.9340 (81.6711 seconds)
+Epoch 12/399 - TRAIN Loss: 0.0598 VAL. Loss: 0.2221 - TRAIN Acc: 0.9886 VAL. Acc: 0.9340 (82.6579 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 13/399 - TRAIN Loss: 0.0657 VAL. Loss: 0.2409 - TRAIN Acc: 0.9846 VAL. Acc: 0.9306 (81.7721 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 14/399 - TRAIN Loss: 0.0502 VAL. Loss: 0.2338 - TRAIN Acc: 0.9878 VAL. Acc: 0.9261 (81.7980 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 15/399 - TRAIN Loss: 0.0458 VAL. Loss: 0.2432 - TRAIN Acc: 0.9915 VAL. Acc: 0.9363 (81.7727 seconds)
+Epoch 16/399 - TRAIN Loss: 0.0370 VAL. Loss: 0.2167 - TRAIN Acc: 0.9943 VAL. Acc: 0.9363 (82.5593 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 17/399 - TRAIN Loss: 0.0289 VAL. Loss: 0.2267 - TRAIN Acc: 0.9954 VAL. Acc: 0.9363 (81.7238 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 18/399 - TRAIN Loss: 0.0323 VAL. Loss: 0.2436 - TRAIN Acc: 0.9932 VAL. Acc: 0.9317 (81.7619 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 19/399 - TRAIN Loss: 0.0335 VAL. Loss: 0.2254 - TRAIN Acc: 0.9926 VAL. Acc: 0.9283 (81.7949 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 20/399 - TRAIN Loss: 0.0238 VAL. Loss: 0.2304 - TRAIN Acc: 0.9969 VAL. Acc: 0.9329 (81.8248 seconds)
+EarlyStopping counter: 5 out of 21
+Epoch 21/399 - TRAIN Loss: 0.0284 VAL. Loss: 0.2376 - TRAIN Acc: 0.9937 VAL. Acc: 0.9340 (81.8705 seconds)
+EarlyStopping counter: 6 out of 21
+Epoch 22/399 - TRAIN Loss: 0.0213 VAL. Loss: 0.2378 - TRAIN Acc: 0.9966 VAL. Acc: 0.9317 (81.7782 seconds)
+EarlyStopping counter: 7 out of 21
+Epoch 23/399 - TRAIN Loss: 0.0208 VAL. Loss: 0.2711 - TRAIN Acc: 0.9963 VAL. Acc: 0.9238 (81.7499 seconds)
+EarlyStopping counter: 8 out of 21
+Epoch 24/399 - TRAIN Loss: 0.0207 VAL. Loss: 0.2587 - TRAIN Acc: 0.9952 VAL. Acc: 0.9306 (81.7260 seconds)
+EarlyStopping counter: 9 out of 21
+Epoch 25/399 - TRAIN Loss: 0.0209 VAL. Loss: 0.2640 - TRAIN Acc: 0.9960 VAL. Acc: 0.9317 (81.7662 seconds)
+EarlyStopping counter: 10 out of 21
+Epoch 26/399 - TRAIN Loss: 0.0189 VAL. Loss: 0.2763 - TRAIN Acc: 0.9952 VAL. Acc: 0.9317 (81.7744 seconds)
+EarlyStopping counter: 11 out of 21
+Epoch 27/399 - TRAIN Loss: 0.0204 VAL. Loss: 0.2487 - TRAIN Acc: 0.9957 VAL. Acc: 0.9352 (81.7688 seconds)
+EarlyStopping counter: 12 out of 21
+Epoch 28/399 - TRAIN Loss: 0.0180 VAL. Loss: 0.2466 - TRAIN Acc: 0.9952 VAL. Acc: 0.9363 (81.7670 seconds)
+EarlyStopping counter: 13 out of 21
+Epoch 29/399 - TRAIN Loss: 0.0156 VAL. Loss: 0.2457 - TRAIN Acc: 0.9972 VAL. Acc: 0.9374 (81.7873 seconds)
+EarlyStopping counter: 14 out of 21
+Epoch 30/399 - TRAIN Loss: 0.0132 VAL. Loss: 0.2496 - TRAIN Acc: 0.9974 VAL. Acc: 0.9374 (81.7646 seconds)
+EarlyStopping counter: 15 out of 21
+Epoch 31/399 - TRAIN Loss: 0.0141 VAL. Loss: 0.2507 - TRAIN Acc: 0.9980 VAL. Acc: 0.9374 (81.7674 seconds)
+EarlyStopping counter: 16 out of 21
+Epoch 32/399 - TRAIN Loss: 0.0122 VAL. Loss: 0.2481 - TRAIN Acc: 0.9980 VAL. Acc: 0.9329 (81.7944 seconds)
+EarlyStopping counter: 17 out of 21
+Epoch 33/399 - TRAIN Loss: 0.0127 VAL. Loss: 0.2524 - TRAIN Acc: 0.9977 VAL. Acc: 0.9340 (81.7964 seconds)
+EarlyStopping counter: 18 out of 21
+Epoch 34/399 - TRAIN Loss: 0.0146 VAL. Loss: 0.2393 - TRAIN Acc: 0.9977 VAL. Acc: 0.9397 (81.6218 seconds)
+EarlyStopping counter: 19 out of 21
+Epoch 35/399 - TRAIN Loss: 0.0116 VAL. Loss: 0.2418 - TRAIN Acc: 0.9977 VAL. Acc: 0.9386 (81.7121 seconds)
+EarlyStopping counter: 20 out of 21
+Epoch 36/399 - TRAIN Loss: 0.0100 VAL. Loss: 0.2505 - TRAIN Acc: 0.9994 VAL. Acc: 0.9352 (81.7682 seconds)
+EarlyStopping counter: 21 out of 21
+Early stopping in epoch 16!
+Treinamento finalizado. (51m 55s)
+TEST. Acc.: 0.9227
+VAL. Acc.: 0.9363
+
+>> Relatório do conjunto de experimentos...
+
+Done!
+
+
+Running in Colab: False
+Configurando GPU...
+
+Device: cuda
+ds: AgriculturalPestsDataset
+arch: vit
+optim: none
+sm: True
+seed: 42
+num_workers: 0
+debug: False
+bs: 32
+lr: 1e-05
+mm: 0.9
+ss: 5
+ep: 400
+optimizer: Adam
+scheduler: plateau
+ft: True
+da: 5
+bce: True
+xai: False
+es: True
+patience: 21
+delta: 0.0001
+wandb: False
+ec: 11
+fold: 1
+magnification: 
+Dataset: AgriculturalPestsDataset
+Dataset Path: /home/pedrocosta/Dev/Datasets/AgriculturalPestsDataset/images
+Exp path: exp_AgriculturalPestsDataset/(AgriculturalPestsDataset)-vit-da_5-bs_32-lr_1e-05-op_Adam-sh_plateau-epochs_400
+
+>> Inicializando o modelo...
+
+Model: ViT_B_16
+VisionTransformer(
+  (conv_proj): Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))
+  (encoder): Encoder(
+    (dropout): Dropout(p=0.0, inplace=False)
+    (layers): Sequential(
+      (encoder_layer_0): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_1): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_2): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_3): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_4): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_5): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_6): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_7): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_8): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_9): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_10): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (encoder_layer_11): EncoderBlock(
+        (ln_1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (self_attention): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=768, out_features=768, bias=True)
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+        (ln_2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): MLPBlock(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU(approximate='none')
+          (2): Dropout(p=0.0, inplace=False)
+          (3): Linear(in_features=3072, out_features=768, bias=True)
+          (4): Dropout(p=0.0, inplace=False)
+        )
+      )
+    )
+    (ln): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+  )
+  (heads): Sequential(
+    (head): Linear(in_features=768, out_features=12, bias=True)
+  )
+)
+criterion = nn.CrossEntropyLoss()
+<torch.optim.lr_scheduler.ReduceLROnPlateau object at 0x7f8273ded030>
+CrossEntropyLoss()
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 1e-05
+    maximize: False
+    weight_decay: 0
+)
+
+>> Training the model...
+Epoch 0/399 - TRAIN Loss: 1.2471 VAL. Loss: 0.4622 - TRAIN Acc: 0.7278 VAL. Acc: 0.9124 (98.4992 seconds)
+Epoch 1/399 - TRAIN Loss: 0.2998 VAL. Loss: 0.2557 - TRAIN Acc: 0.9369 VAL. Acc: 0.9420 (98.5375 seconds)
+Epoch 2/399 - TRAIN Loss: 0.1772 VAL. Loss: 0.2093 - TRAIN Acc: 0.9596 VAL. Acc: 0.9420 (98.6115 seconds)
+Epoch 3/399 - TRAIN Loss: 0.1077 VAL. Loss: 0.1823 - TRAIN Acc: 0.9792 VAL. Acc: 0.9545 (98.6545 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 4/399 - TRAIN Loss: 0.0741 VAL. Loss: 0.1862 - TRAIN Acc: 0.9872 VAL. Acc: 0.9499 (95.3452 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 5/399 - TRAIN Loss: 0.0484 VAL. Loss: 0.1826 - TRAIN Acc: 0.9920 VAL. Acc: 0.9488 (95.4209 seconds)
+Epoch 6/399 - TRAIN Loss: 0.0360 VAL. Loss: 0.1659 - TRAIN Acc: 0.9957 VAL. Acc: 0.9511 (98.6899 seconds)
+EarlyStopping counter: 1 out of 21
+Epoch 7/399 - TRAIN Loss: 0.0324 VAL. Loss: 0.1835 - TRAIN Acc: 0.9946 VAL. Acc: 0.9465 (95.2148 seconds)
+EarlyStopping counter: 2 out of 21
+Epoch 8/399 - TRAIN Loss: 0.0218 VAL. Loss: 0.2319 - TRAIN Acc: 0.9966 VAL. Acc: 0.9340 (95.2996 seconds)
+EarlyStopping counter: 3 out of 21
+Epoch 9/399 - TRAIN Loss: 0.0176 VAL. Loss: 0.1734 - TRAIN Acc: 0.9977 VAL. Acc: 0.9420 (95.3798 seconds)
+EarlyStopping counter: 4 out of 21
+Epoch 10/399 - TRAIN Loss: 0.0237 VAL. Loss: 0.1863 - TRAIN Acc: 0.9957 VAL. Acc: 0.9488 (95.4261 seconds)
+EarlyStopping counter: 5 out of 21
+Epoch 11/399 - TRAIN Loss: 0.0169 VAL. Loss: 0.1763 - TRAIN Acc: 0.9977 VAL. Acc: 0.9545 (95.5479 seconds)
+EarlyStopping counter: 6 out of 21
+Epoch 12/399 - TRAIN Loss: 0.0153 VAL. Loss: 0.2153 - TRAIN Acc: 0.9966 VAL. Acc: 0.9408 (95.2637 seconds)
+EarlyStopping counter: 7 out of 21
+Epoch 13/399 - TRAIN Loss: 0.0130 VAL. Loss: 0.1772 - TRAIN Acc: 0.9980 VAL. Acc: 0.9545 (95.3335 seconds)
+EarlyStopping counter: 8 out of 21
+Epoch 14/399 - TRAIN Loss: 0.0073 VAL. Loss: 0.1903 - TRAIN Acc: 0.9994 VAL. Acc: 0.9545 (95.3704 seconds)
+EarlyStopping counter: 9 out of 21
+Epoch 15/399 - TRAIN Loss: 0.0048 VAL. Loss: 0.2042 - TRAIN Acc: 1.0000 VAL. Acc: 0.9477 (95.2820 seconds)
+EarlyStopping counter: 10 out of 21
+Epoch 16/399 - TRAIN Loss: 0.0080 VAL. Loss: 0.2129 - TRAIN Acc: 0.9983 VAL. Acc: 0.9443 (95.2324 seconds)
+EarlyStopping counter: 11 out of 21
+Epoch 17/399 - TRAIN Loss: 0.0118 VAL. Loss: 0.2130 - TRAIN Acc: 0.9980 VAL. Acc: 0.9443 (95.3872 seconds)
+EarlyStopping counter: 12 out of 21
+Epoch 18/399 - TRAIN Loss: 0.0076 VAL. Loss: 0.1963 - TRAIN Acc: 0.9983 VAL. Acc: 0.9465 (95.2490 seconds)
+EarlyStopping counter: 13 out of 21
+Epoch 19/399 - TRAIN Loss: 0.0041 VAL. Loss: 0.1931 - TRAIN Acc: 1.0000 VAL. Acc: 0.9511 (95.3105 seconds)
+EarlyStopping counter: 14 out of 21
+Epoch 20/399 - TRAIN Loss: 0.0043 VAL. Loss: 0.1930 - TRAIN Acc: 0.9997 VAL. Acc: 0.9522 (95.3804 seconds)
+EarlyStopping counter: 15 out of 21
+Epoch 21/399 - TRAIN Loss: 0.0052 VAL. Loss: 0.1989 - TRAIN Acc: 0.9994 VAL. Acc: 0.9511 (95.4633 seconds)
+EarlyStopping counter: 16 out of 21
+Epoch 22/399 - TRAIN Loss: 0.0057 VAL. Loss: 0.1970 - TRAIN Acc: 0.9994 VAL. Acc: 0.9499 (95.3141 seconds)
+EarlyStopping counter: 17 out of 21
+Epoch 23/399 - TRAIN Loss: 0.0043 VAL. Loss: 0.2032 - TRAIN Acc: 0.9994 VAL. Acc: 0.9465 (95.3801 seconds)
+EarlyStopping counter: 18 out of 21
+Epoch 24/399 - TRAIN Loss: 0.0037 VAL. Loss: 0.1931 - TRAIN Acc: 0.9997 VAL. Acc: 0.9522 (95.3101 seconds)
+EarlyStopping counter: 19 out of 21
+Epoch 25/399 - TRAIN Loss: 0.0040 VAL. Loss: 0.1942 - TRAIN Acc: 0.9997 VAL. Acc: 0.9522 (95.3805 seconds)
+EarlyStopping counter: 20 out of 21
+Epoch 26/399 - TRAIN Loss: 0.0031 VAL. Loss: 0.1933 - TRAIN Acc: 1.0000 VAL. Acc: 0.9522 (95.3502 seconds)
+EarlyStopping counter: 21 out of 21
+Early stopping in epoch 6!
+Treinamento finalizado. (44m 45s)
+TEST. Acc.: 0.9472
+VAL. Acc.: 0.9511
+
+>> Relatório do conjunto de experimentos...
+
+Done!
+
+
+
+Done! (train_test_batch)

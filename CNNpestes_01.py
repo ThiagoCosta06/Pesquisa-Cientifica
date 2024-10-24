@@ -1,16 +1,8 @@
 # %% [markdown]
-# # Enhancing green coffee quality assessment through deep learning
-# 
-# #### Reinaldo Gonçalves Pereira Neto(1), Pedro Moises de Sousa(1), Larissa Ferreira Rodrigues Moreira(1), Pedro Ivo Vieira Good God(2), João Fernando Mari(1)
-# 
-# ##### (1) Instituto de Ciências Exatas e Tecnologicas - Universidade Federal de Vicosa - UFV, Rio Paranaıba, MG, Brazil
-# ##### (2) Instituto de Ciências Agrarias - Universidade Federal de Viçosa - UFV, Rio Paranaıba, MG, Brazil
-# 
-# #### *{reinaldo.neto, pedromoises, larissa.f.rodrigues, pedro.god, joaof.mari}@ufv.br*
+#
 # ---
 # 
 # * Code for the paper published in the XVIII Workshop of Computer Vision 2023 - WVC'2023.
-#     * https://fei.edu.br/sites/wvc2023/
 # ---
 
 # %% [markdown]
@@ -27,7 +19,7 @@ import argparse
 import shutil
 import datetime
 import glob
-import pickle
+import pickle   
 
 import numpy as np
 import pandas as pd
@@ -99,9 +91,9 @@ print(f'\nDevice: {DEVICE}')
 parser = argparse.ArgumentParser()
 
 # Dataset name. ['BreakHis', 'USK-Coffee', 'deep-coffee', 'smallopticalsorter']
-parser.add_argument('--ds', help='Dataset name.', type=str, default='AgriculturalPestsDataset')
+parser.add_argument('--ds', help='Dataset name.', type=str, default='FlowersRecognition')
 # Model architecture [alexnet, vgg, resnet, densenet, squeezenet, (inception), ...]
-parser.add_argument('--arch', help='CNN architecture', type=str, default='alexnet', )
+parser.add_argument('--arch', help='CNN architecture', type=str, default='efficientnet_b4', )
 parser.add_argument('--optim', help="Hyperparameter optmization: ['none', 'grid', 'random'].", type=str, default='none', )
 parser.add_argument('--sm', help='Save the model?', default=True, action='store_true')
 
@@ -116,7 +108,7 @@ parser.add_argument('--lr', help='Learning rate.', type=float, default=0.0001)
 parser.add_argument('--mm', help='Momentum.', type=float, default=0.9)
 parser.add_argument('--ss', help='Step size.', type=int, default=5)
 ### parser.add_argument('--wd', help='Weight decay.', type=float, default=0.1)
-parser.add_argument('--ep', help='Number of epochs', type=int, default=2) # 200
+parser.add_argument('--ep', help='Number of epochs', type=int, default=4) # 200
 
 parser.add_argument('--optimizer', help="Optimizer. ['SGD', 'Adam'].", type=str, default='Adam')
 parser.add_argument('--scheduler', help="Scheduler. ['steplr', 'cossine', 'plateau'].", type=str, default='plateau')
@@ -154,10 +146,11 @@ args = parser.parse_args()
 # ***** IMPORTANTE!!! *****
 # Set DEBUG mode:
 # *************************
-args.debug = False
+args.debug = True
 
 if args.debug:
     args.ep = 4
+    args.bs = 32
 
 # %%
 if str(DEVICE) != 'cuda':
@@ -205,7 +198,7 @@ def get_versions():
 # ---
 
 # %%
-class AgriculturalPestsDataset(Dataset):
+class FlowersRecognitionDataset(Dataset):
 
     def __init__(self, path_list, label_list, transforms=None):
         self.path_list = path_list
@@ -249,10 +242,12 @@ class AgriculturalPestsDataset(Dataset):
 # ---
 
 # %%
-DS_PATH_MAIN = '/home/pedro/DataSets/'
+DS_PATH_MAIN = '/home/pedrocosta/Dev/Datasets/'
 
 if args.ds == 'AgriculturalPestsDataset':
     DS_PATH = os.path.join(DS_PATH_MAIN, args.ds, 'images')
+elif args.ds == 'FlowersRecognition':
+    DS_PATH = os.path.join(DS_PATH_MAIN, args.ds, 'flowers')
 
 # DEBUG
 print(f'Dataset: {args.ds}')
@@ -509,40 +504,30 @@ elif args.da == 5: # Data augmentation base. No HUE. No RandomErasing.
 #-------------------------#
 #NOME E NUMEROS DA CLASSES#
 #-------------------------#
-class_names = os.listdir(os.path.join(DS_PATH, 'train'))
+class_names = os.listdir(DS_PATH)
 num_classes = len(class_names)
 
-X_train_ = []
-y_train_ = []
+print('Num classes: ', num_classes)
 
-for class_ in class_names:
-    #lista ordenada dos arquivos (imagens) em cada pasta
-    path_list_ = os.listdir(os.path.join(DS_PATH, 'train', class_))
-    path_list_.sort()
-
-    for path_image in path_list_:
-        file_path = os.path.join(DS_PATH, 'train', class_, path_image)
-        X_train_.append(file_path)
-        y_train_.append(class_)
-
-X_test = []
-y_test = []
-
+# Lista com todos os caminhos para as imagens e respectivos rótulos
 path_list = []
+label_list = []
 
+# Itera ao longo das pastas das classes
 for class_ in class_names:
-    #lista ordenada dos arquivos (imagens) em cada pasta
-    path_list_ = os.listdir(os.path.join(DS_PATH, 'test', class_))
+    # Lista ordenada dos arquivos (imagens) em cada pasta
+    path_list_ = os.listdir(os.path.join(DS_PATH, class_))
     path_list_.sort()
 
-    #itera ao longo dos arquivos na pasta atual (classe)
+    # Itera ao longo dos arquivos na pasta atual (classe)
     for path_image in path_list_:
-        file_path = os.path.join(DS_PATH, 'test', class_, path_image)
-        X_test.append(file_path)
-        y_test.append(class_)
+        file_path = os.path.join(DS_PATH, class_, path_image)
+        path_list.append(file_path)
+        label_list.append(class_)
 
-VAL_SIZE  = 0.2
-TRAIN_SIZE = 1. -VAL_SIZE
+TEST_SIZE = 0.2
+VAL_SIZE = 0.2
+TRAIN_SIZE = 1. - TEST_SIZE - VAL_SIZE
 
 # train_size = int(0.8 * len(image_dataset_train))
 # val_size = len(image_dataset_train) - train_size
@@ -551,16 +536,27 @@ TRAIN_SIZE = 1. -VAL_SIZE
 
 le = preprocessing.LabelEncoder()
 le.fit(class_names)
-y_train_idx = le.transform(y_train_)
-y_test_idx = le.transform(y_test)
+label_list_idx = le.transform(label_list)
 
+# Separa TEST_SIZE do conjuto de completo para TESTES. 1. - TEST_SIZE para treinamento 1.
+X_train_, X_test, y_train_, y_test = model_selection.train_test_split(path_list, 
+                                                                      label_list_idx, 
+                                                                      test_size=TEST_SIZE, 
+                                                                      stratify=label_list_idx,
+                                                                      random_state=42)
 
+# Separa VAL_SIZE do conjuto de completo para TESTES. (VAL_SIZE / TRAIN_SIZE) do conjunto de treinamento 1.
+X_train, X_val, y_train, y_val = model_selection.train_test_split(X_train_, 
+                                                                  y_train_, 
+                                                                  test_size=(VAL_SIZE / TRAIN_SIZE), 
+                                                                  stratify=y_train_,
+                                                                  random_state=42)
 
-X_train, X_val, y_train, y_val_idx = model_selection.train_test_split(X_train_, y_train_idx, test_size=VAL_SIZE, stratify=y_train_idx, random_state=42)
+# Construindo os datasets usando a classe Dataset personalizado.
+train_dataset = FlowersRecognitionDataset(X_train, y_train, transforms=data_transforms_train)
+val_dataset = FlowersRecognitionDataset(X_val, y_val, transforms=data_transform_test)
+test_dataset = FlowersRecognitionDataset(X_test, y_test, transforms=data_transform_test)
 
-train_dataset = AgriculturalPestsDataset(X_train, y_train_idx, transforms=data_transforms_train)
-val_dataset = AgriculturalPestsDataset(X_val, y_val_idx, transforms=data_transforms_val)
-test_dataset = AgriculturalPestsDataset(X_test, y_test_idx, transforms=data_transform_test)
 
 # train_dataset, val_dataset = torch.utils.data.random_split(image_dataset_train, [train_size, val_size])    # MUDAR AQUI PARA A DIVISAO DA VERSAO ANTERIOR 
 
@@ -571,6 +567,11 @@ test_dataset = AgriculturalPestsDataset(X_test, y_test_idx, transforms=data_tran
 train_size = len(train_dataset)
 val_size = len(val_dataset)
 test_size = len(test_dataset)
+
+
+print(train_size )
+print(val_size )
+print(test_size )
 
 
 
@@ -1017,13 +1018,13 @@ report_file.close()
 # img_dataset_test =  AgriculturalPestsDataset(os.path.join(DS_PATH, 'test'), data_transform_test)
 # img_dataset_train = AgriculturalPestsDataset(os.path.join(DS_PATH, 'train'), data_transforms_train)
 
-img_dataset_train = AgriculturalPestsDataset(X_train, y_train_idx, transforms=data_transforms_train)
-img_dataset_val = AgriculturalPestsDataset(X_val, y_val_idx, transforms=data_transforms_val)
-img_dataset_test = AgriculturalPestsDataset(X_test, y_test_idx, transforms=data_transform_test)
+img_dataset_train = FlowersRecognitionDataset(X_train, y_train_idx, transforms=data_transforms_train)
+img_dataset_val = FlowersRecognitionDataset(X_val, y_val_idx, transforms=data_transforms_val)
+img_dataset_test = FlowersRecognitionDataset(X_test, y_test_idx, transforms=data_transform_test)
 
 
-VAL_SIZE  = 0.2 
-TRAIN_SIZE = 1. -VAL_SIZE
+VAL_SIZE  = 0.3 
+### TRAIN_SIZE = 1. -VAL_SIZE
 
 # index = torch.randperm(len(img_dataset_test)).tolist()        # MUDAR AQUI PARA A DIVISAO DA CNN ORIGINAL 
 

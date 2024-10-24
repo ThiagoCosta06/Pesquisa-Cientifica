@@ -3,7 +3,10 @@ import torch.nn as nn
 
 import timm
 
-def create_model(arch, ft, num_classes, bce):
+def create_model(arch, ft, num_classes, bce, fe=False):
+    """
+    fe : perform feature extraction
+    """
 
     input_size = 224
 
@@ -15,17 +18,29 @@ def create_model(arch, ft, num_classes, bce):
         else:
             model = models.alexnet(weights=None)
 
-        num_ftrs = model.classifier[6].in_features # alexnet: 4096
+        if fe:
+            #Congelar o treinamento para todas as camadas
+            for param in model.features.parameters():
+                param.requires_grad = False
 
-        if num_classes == 2 and bce:
-            # Classificação binária:
-            # Apenas 1 neurônio na camada de saída e função de perda (loss) BCELoss.
-            model.classifier[6] = nn.Linear(num_ftrs, 1)
-        else:
-            # Classicação não binária: 
-            # Número de neurônios na camada de sáida igual ao número de classes. 
-            # Função de perda CrossEntropyLoss.
-            model.classifier[6] = nn.Linear(num_ftrs, num_classes)
+            #Remover as camadas de classificação
+            features = list(model.classifier.children())[:-7]
+
+            #Substituir o classificador do modelo
+            model.classifier = nn.Sequential(*features)
+
+        else: # trainamento
+            num_ftrs = model.classifier[6].in_features # alexnet: 4096
+
+            if num_classes == 2 and bce:
+                # Classificação binária:
+                # Apenas 1 neurônio na camada de saída e função de perda (loss) BCELoss.
+                model.classifier[6] = nn.Linear(num_ftrs, 1)
+            else:
+                # Classicação não binária: 
+                # Número de neurônios na camada de sáida igual ao número de classes. 
+                # Função de perda CrossEntropyLoss.
+                model.classifier[6] = nn.Linear(num_ftrs, num_classes)
 
         # Grad-cam
         target_layers = model.features[-1]
@@ -37,16 +52,46 @@ def create_model(arch, ft, num_classes, bce):
         else:
             model = models.vgg11_bn(weights=None)
 
-        num_ftrs = model.classifier[6].in_features # vgg11_bn: 4096
+        if fe:
+            #Congelar o treinamento para todas as camadas
+            for param in model.features.parameters():
+                param.requires_grad = False
 
-        if num_classes == 2 and bce:
-            model.classifier[6] = nn.Linear(num_ftrs, 1)
-        else:
-            model.classifier[6] = nn.Linear(num_ftrs, num_classes)
+            #Remover as camadas de classificação
+            features = list(model.classifier.children())[:-7]
+
+            #Substituir o classificador do modelo
+            model.classifier = nn.Sequential(*features)
+
+        else: # treinamento
+            num_ftrs = model.classifier[6].in_features # vgg11_bn: 4096
+
+            if num_classes == 2 and bce:
+                model.classifier[6] = nn.Linear(num_ftrs, 1)
+            else:
+                model.classifier[6] = nn.Linear(num_ftrs, num_classes)
 
         # Grad-cam
         target_layers = model.features[-1]
 
+    # elif arch == 'vgg16':
+    #     print(f'\nModel: VGG16_BN')
+    #     if ft:
+    #         model = models.vgg16_bn(weights='VGG16_BN_Weights.IMAGENET1K_V1')
+    #     else:
+    #         model = models.vgg16_bn(weights=None)
+
+    #     num_ftrs = model.classifier[6].in_features # vgg16_bn: 4096
+
+    #     if num_classes == 2 and bce:
+    #         model.classifier[6] = nn.Linear(num_ftrs, 1)
+    #     else:
+    #         model.classifier[6] = nn.Linear(num_ftrs, num_classes)
+
+    #     # Grad-cam
+    #     target_layers = model.features[-1]
+
+    
     elif arch == 'vgg16':
         print(f'\nModel: VGG16_BN')
         if ft:
@@ -54,15 +99,17 @@ def create_model(arch, ft, num_classes, bce):
         else:
             model = models.vgg16_bn(weights=None)
 
-        num_ftrs = model.classifier[6].in_features # vgg16_bn: 4096
+        #Congelar o treinamento para todas as camadas
+        for param in model.features.parameters():
+            param.requires_grad = False
 
-        if num_classes == 2 and bce:
-            model.classifier[6] = nn.Linear(num_ftrs, 1)
-        else:
-            model.classifier[6] = nn.Linear(num_ftrs, num_classes)
+        #Remover as camadas de classificação
+        features = list(model.classifier.children())[:-7]
 
-        # Grad-cam
-        target_layers = model.features[-1]
+        #Substituir o classificador do modelo
+        model.classifier = nn.Sequential(*features)
+
+        target_layers = None
 
     elif arch == 'resnet18':
         print('\nModel: ResNet18')
@@ -88,12 +135,17 @@ def create_model(arch, ft, num_classes, bce):
         else:
             model = models.resnet50(weights=None)
 
-        num_ftrs = model.fc.in_features # resnet18: 2048
 
-        if num_classes == 2 and bce:
-            model.fc = nn.Linear(num_ftrs, 1)
+        if fe: 
+            #remover a camada totalmente conectada
+            model.fc = nn.Identity()
         else:
-            model.fc = nn.Linear(num_ftrs, num_classes)
+            num_ftrs = model.fc.in_features # resnet18: 2048
+
+            if num_classes == 2 and bce:
+                model.fc = nn.Linear(num_ftrs, 1)
+            else:
+                model.fc = nn.Linear(num_ftrs, num_classes)
 
         # Grad-cam
         target_layers = [model.layer4[-1]]
@@ -164,10 +216,13 @@ def create_model(arch, ft, num_classes, bce):
 
         num_ftrs = model.heads.head.in_features # vit_b_16: 768
 
-        if num_classes == 2 and bce:
-            model.heads.head = nn.Linear(num_ftrs, 1, bias=True)
+        if fe: 
+            model.heads = nn.Identity()
         else:
-            model.heads.head = nn.Linear(num_ftrs, num_classes, bias=True)
+            if num_classes == 2 and bce:
+                model.heads.head = nn.Linear(num_ftrs, 1, bias=True)
+            else:
+                model.heads.head = nn.Linear(num_ftrs, num_classes, bias=True)
 
         # Grad-cam
         target_layers = None
@@ -179,13 +234,26 @@ def create_model(arch, ft, num_classes, bce):
             model = models.efficientnet_b4(weights='EfficientNet_B4_Weights.IMAGENET1K_V1')
         else:
             model = models.efficientnet_b4(weights=None)
+        
+        if fe:
+            #Congelar o treinamento para todas as camadas
+            for param in model.features.parameters():
+                param.requires_grad = False
 
-        num_ftrs = model.classifier[1].in_features # efficientnet_b4: 1792
+            #Remover as camadas de classificação
+            features = list(model.classifier.children())[:-2]
 
-        if num_classes == 2 and bce:
-            model.classifier[1] = nn.Linear(num_ftrs, 1, bias=True)
+            #Substituir o classificador do modelo
+            model.classifier = nn.Sequential(*features)
+        
         else:
-            model.classifier[1] = nn.Linear(num_ftrs, num_classes, bias=True)
+
+            num_ftrs = model.classifier[1].in_features # efficientnet_b4: 1792
+
+            if num_classes == 2 and bce:
+                model.classifier[1] = nn.Linear(num_ftrs, 1, bias=True)
+            else:
+                model.classifier[1] = nn.Linear(num_ftrs, num_classes, bias=True)
 
         # Grad-cam. #1
         target_layers = model.features[8][2]

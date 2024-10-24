@@ -8,7 +8,7 @@ parser = argparse.ArgumentParser()
 
 # Arquitetura ['alexnet', 'resnet101', 'densenet121']
 parser.add_argument('--ds', type=str, default='AgriculturalPestsDataset', help='Dataset name.')
-parser.add_argument('--arch', type=str, default='alexnet', help='Arquitetura da CNN. Default: alexnet.')
+parser.add_argument('--arch', type=str, default='vit', help='Arquitetura da CNN. Default: alexnet.')
 
 parser.add_argument('--optimizer', help="Optimizer. ['SGD', 'Adam'].", type=str, default='Adam')
 parser.add_argument('--scheduler', help="Scheduler. ['steplr', 'cossine', 'plateau'].", type=str, default='plateau')
@@ -18,7 +18,7 @@ args = parser.parse_args()
 # Hyperparameter optmization
 args.optim = 'grid'
 # Number of epochs
-ep = 2 # 50 # 400
+ep = 400 # 50 # 400
 # Early stoppping
 ES = True
 
